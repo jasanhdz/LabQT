@@ -4,7 +4,7 @@
   "description": "Proyecto para el laboratorio de Química teorica",
   "main": "index.js",
   "scripts": {
-    "build:dev:server": "webpack-dev-server --progress --color --config ./webpack.dev.config.js",
+    "server": "webpack-dev-server --progress --color --config ./webpack.dev.config.js",
     "build:dev": "webpack --config ./webpack.dev.config.js",
     "build:local": "webpack --env.NODE_ENV=local",
     "build:prod": "webpack --env.NODE_ENV=production"
@@ -21,6 +21,7 @@
   "author": "Jasan A. Hernández Bautista <jasan814@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "8.2.0",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-redux": "7.1.1",

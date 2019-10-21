@@ -18,6 +18,9 @@ module.exports = {
     contentBase: path.join(__dirname, '/public/'),
     open: true,
   },
+  node: {
+    fs: 'empty',
+  },
   module: {
     rules: [
       {
