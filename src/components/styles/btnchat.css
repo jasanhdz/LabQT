@@ -1,0 +1,19 @@
+.Btn__chat {
+  width: 150px;
+  height: 40px;
+  background-color: peru;
+  /* position: fixed; */
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: .7s;
+  outline: 0;
+  border: none;
+  margin: 5px 10px;
+}
+
+.Btn__chat:active {
+  transform: scale(.8);
+}

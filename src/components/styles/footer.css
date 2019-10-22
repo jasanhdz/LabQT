@@ -1,0 +1,111 @@
+.footer {
+  /* height: 250px; */
+  background-color: #00885b;
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  height: auto;
+}
+
+.Footer_container {
+  height:90px;
+  display:inherit;
+  align-items:center;
+}
+
+.form {
+  display: inherit;
+  flex-wrap: wrap;
+  width: 1100px;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+.btn {
+  border-radius: 4px;
+  height: 40px;
+  cursor: pointer;
+  transition: .2s;
+  will-change: transform;
+}
+
+.item {
+  max-width: 300px;
+}
+
+.logos {
+  display: inherit;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.logos p {
+  font-size: .9em;
+}
+.information {
+  display: inherit;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: center; */
+}
+.information p {
+  margin-bottom: 30px;
+}
+.information p, label {
+  padding-left: 5px; 
+}
+.information input {
+  width: 85%;
+  font-size: 1.2em;
+  border-color: gray;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 10px 20px 5px 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 15px;
+}
+.email {
+  margin-left: -64px
+}
+.direction {
+  padding: 0 25px;
+  text-align: justify;
+}
+.description {
+  display: inherit;
+  flex-direction: column;
+}
+.btn.sbm {
+  color: white;
+  background: linear-gradient(to left, #fe344e, #ff7250);
+}
+
+@media screen and (max-width: 900px) {
+  .form {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width:380px) {
+  .logos {
+    order: 3;
+  }
+  .information {
+    order: 1;
+  }
+  .description {
+    order: 2;
+  }
+  .teacher-img {
+    max-height: 120px;
+  }
+  .btn.second {
+    text-align: center;
+    font-size: .7em;
+    height: 20px;
+  }
+  .item {
+    max-width: 230px;
+  }
+}

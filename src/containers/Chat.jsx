@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout.jsx';
 import ChatLayout from '../components/chat-layout.jsx';
+import ChatBotom from '../components/chatBotom.jsx';
 
 class Chat extends React.Component {
   constructor() {
@@ -17,8 +18,19 @@ class Chat extends React.Component {
           message: "Message 2",
         }
       ],
+      chatVisibility: false,
+      chatBtn: true,
     }
   }
+
+  closeChat = e => {
+    console.log('click', e);
+    this.setState({
+      chatVisibility: false,
+      chatBtn: true,
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('Enter');
@@ -42,15 +54,39 @@ class Chat extends React.Component {
     });
   }
 
+  handleClick = e => {
+    console.log('poner chat');
+    this.setState({ chatVisibility: true, chatBtn: false })
+  }
+
+  LoadingChat() {
+    if (this.state.chatVisibility) {
+      return (
+        <ChatLayout
+            closeChat={this.closeChat}
+            messages={this.state.messages}
+            handleSubmit={this.handleSubmit}
+            handleMessage={this.updateMessage}
+            inputMessage={this.state.message}
+         />
+      );
+    }
+    if (this.state.chatBtn) {
+      return (
+        <ChatBotom
+          handleClick={this.handleClick}
+        />
+        // <ChatBotom
+        //   // handleClick={this.handleClick}
+        // />
+      );
+    }
+  }
+
   render() {
     return (
       <Layout>
-        <ChatLayout
-          messages={this.state.messages}
-          handleSubmit={this.handleSubmit}
-          handleMessage={this.updateMessage}
-          inputMessage={this.state.message}
-        />
+        {this.LoadingChat()}
       </Layout>
     );
   }

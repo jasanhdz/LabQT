@@ -17,6 +17,7 @@ module.exports = {
     publicPath:  path.resolve(__dirname, '/dist/'),
     contentBase: path.join(__dirname, '/public/'),
     open: true,
+    historyApiFallback: true,
   },
   node: {
     fs: 'empty',

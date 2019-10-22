@@ -1,0 +1,33 @@
+.Menu_container {
+  display: flex;
+  background-color: #219cca;
+  width: 100%;
+  justify-content: center;
+  height: 50px;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+}
+
+.SubMenu {
+  display: inherit;
+    width: 700px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.SubMenu li {
+  align-items: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: inherit;
+    cursor: pointer;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 50px;
+    color: white;
+    /* font-weight: bold; */
+    /* height: inherit; */
+}
+
+.SubMenu li:hover {
+  background-color: #00395E;
+}

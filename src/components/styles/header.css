@@ -72,6 +72,70 @@ body {
   /* border: 1px solid pink; */
 }
 
+.Btn_Container {
+  /* display: flex;
+  width: 100px;
+  height: 35px;
+  justify-content: center;
+  border: 1px solid red; */
+}
+
+.Btn_Primary {
+  background: #7acc2d;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  transition: 0.4s;
+  padding: 10px 15px;
+  color: white;
+  outline: 0;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.Btn_Primary:active {
+  transform: scale(.6);
+}
+
+.BuapLogo {
+  align-self: center;
+}
+
+.Fcqmin {
+  padding: 6px;
+  width: 12%;
+  animation: react;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(30);
+  animation-fill-mode: forwards;
+  will-change: trasform;
+}
+
+@keyframes react {
+  20% {
+    transform: rotateZ(180deg);
+    /* transform: rotateY(180deg); */
+  }
+  40% {
+    transform: rotateZ(360deg);
+    /* transform: rotateY(180deg); */
+  }
+
+  50% {
+    transform: rotateZ(360deg );
+  }
+
+  80% {
+    transform: rotateZ(180deg );
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
 .menu {
   display: flex;
   /* border: 1px solid red; */
@@ -110,7 +174,23 @@ body {
   font-size: 2em;
 }
 
+@media screen and (max-width: 1150px) {
+  .Fcqmin {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Fcqmin {
+    width: 20%;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .Fcqmin {
+    width: 18%;
+  }
+ 
   .icon-menu {
     height: 100%;
     width: 70px;
@@ -150,6 +230,16 @@ body {
   .menu li:hover a {
     color: red;
     transition: .3s;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Fcqmin {
+    width: 25%;
+    padding: 0;
+  }
+  .Container_logo--react {
+    justify-content: space-evenly;
   }
 }
 
