@@ -1,11 +1,6 @@
 import React from 'react';
 import PostLayout from '../components/PostLayout.jsx';
-import Article from '../components/Article.jsx';
-import ModalContainer from '../widgets/containers/modal.jsx';
-import PostModal from '../widgets/components/modal-post.jsx';
 import { DATE_NOW } from '../widgets/util/date-format';
-import '../components/styles/post.css';
-import '../widgets/components/modal.css';
 
 class Post extends React.Component {
   constructor() {
@@ -13,18 +8,7 @@ class Post extends React.Component {
     this.db = firebase.firestore();
     const settings = { timestampsInSnapshots: true }
     this.db.settings(settings);
-    this.state = {
-      // user: firebase.auth().currentUser,
-      itemImg: true,
-      itemVideo: true,
-      title: null,
-      description: null,
-      linkVideo: null,
-      porcentage: null,
-      payload: [],
-      style: {},
-      imageLink: null,
-    }
+    this.state = {}
   }
 
 
@@ -83,25 +67,6 @@ class Post extends React.Component {
 
   setRefLoading = e => {
     this.inputPayloadPost = e;
-  }
-
-  // Aquí vamos a validar cuando poner el ModalPost
-  ModalPostPayload() {
-    if(this.props.modalPostActive) {
-      return (
-        <ModalContainer>
-          <PostModal 
-            handleChange={this.handleChange}
-            submitPost={this.submitPost}
-            closeModal={this.props.closeModal}
-            loadingFile={this.loadingFile}
-            porcentage={this.state.porcentage}
-            refLoading={this.setRefLoading}
-            styleLoadImgPost={this.state.style}
-          />
-        </ModalContainer>
-      )
-    }
   }
   
   loadingFile = e => {
@@ -169,14 +134,6 @@ class Post extends React.Component {
   render() {
     return (
       <PostLayout>
-         {
-            this.props.modalVisibility && this.ModalPostPayload()
-          }
-        {/* <Article
-          itemImg={this.state.itemImg}
-          itemVideo={this.state.itemVideo}
-          data={this.props.payload}
-        /> */}
       </PostLayout>
     ); 
   }

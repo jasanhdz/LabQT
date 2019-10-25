@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 
 const SignUp = props => {
   return (
-    <section class="login">
-    <div class="login__container">
+    <section className="login">
+    <div className="login__container">
       <h2>Registrarse</h2>
-      <form action="" className="login__container--form">
-        <input className="input" type="text" name="" placeholder="Nombre" />
-        <input className="input" type="email" name="" placeholder="Correo" />
-        <input className="input" type="password" name="" placeholder="Contraseña" />
-        <button className="button">Registrarse</button>
+      <form onSubmit={props.handleSubmitRegistry} action="POST" className="login__container--form">
+        <input className="input" type="text" ref={props.setRefName} placeholder="Nombre" />
+        <input className="input" type="email" ref={props.setRefEmail} placeholder="Correo" />
+        <input className="input" type="password" ref={props.setRefPass} placeholder="Contraseña" />
+        <button onSubmit={props.handleSubmitRegistry} className="button">Registrarse</button>
       </form>
-      <p class="login__container--register center"><Link to="/login">Iniciar sesión</Link></p>
+      <p className="login__container--register center"><Link to="/login">Iniciar sesión</Link></p>
     </div>
   </section>
   );

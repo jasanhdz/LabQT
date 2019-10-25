@@ -3,6 +3,7 @@ import SignUp from '../components/Signup.jsx';
 import HomeLayout from '../components/home-layout.jsx';
 import Header from '../components/Header.jsx';
 import About from '../components/About.jsx';
+import { firebaseConfig } from '../firebase/Configuration'
 
 class Register extends React.Component {
   constructor() {
@@ -14,11 +15,11 @@ class Register extends React.Component {
 
 
 /******* Crear Cuenta con Email y Password *******/
-  crearAcountEmailPass(email, passsword, names) {
+  createAcountEmailPass(email, passsword, name) {
   firebase.auth().createUserWithEmailAndPassword(email, passsword) 
   .then(result => {
     result.user.updateProfile({
-      displayName: names
+      displayName: name
     })
 
     const configuration = {
@@ -33,8 +34,10 @@ class Register extends React.Component {
     
     firebase.auth().signOut();
 
-    alert(`Bienvenido ${names} debes realizar el proceso de verification.`);
-
+    alert(`Bienvenido ${name} debes realizar el proceso de verification.`);
+    setTimeout(() => {
+      window.location.href = firebaseConfig.redirect
+    }, 100);
   })
   .catch(error => {
     console.error(error);
@@ -45,27 +48,35 @@ class Register extends React.Component {
   handleSubmitRegistry = event => {
     event.preventDefault();
     this.email = this.inputLoginEmail.value;
-    this.name = this.inputLoginNames.value;
+    this.name = this.inputLoginName.value;
     this.password = this.inputLoginPassword.value;
     console.log(this.password, 'encriptado!');
-    this.crearAcountEmailPass(this.email, this.password, this.name);
-    window.location.href = 'http://localhost:3000/login';
+    this.createAcountEmailPass(this.email, this.password, this.name);
   }
+
+  // Obtenemos el valor de los input
+  refInputValueName = event => {
+    this.inputLoginName = event;
+  }
+
+  refInputValueEmail = event => {
+    this.inputLoginEmail = event;
+  }
+
+  refInputValuePassword = event => {
+    this.inputLoginPassword = event;
+  }
+// Terminamos de obtener el valor de los input
+
   render() {
     return (
       <HomeLayout>
         <Header />
         <SignUp
-           handleSubmitRegistry={this.handleSubmitRegistry} 
-           closeModal={this.closeModal}
-           handleFocus={this.handleFocus}
-           focusActive={this.state.focusActive}
-           removeFocus={this.removeFocus}
-           handleClick={this.clickOverlay}
-           setRefEmail={this.refInputValueEmailLogin}
-           setRefPass={this.refInputValuePasswordLogin}
-           setRefNames={this.refInputValueNamesLogin}
-           handleLogin={this.handleClickLogin}
+          handleSubmitRegistry={this.handleSubmitRegistry}
+          setRefName={this.refInputValueName}
+          setRefEmail={this.refInputValueEmail}
+          setRefPass={this.refInputValuePassword}
         />
         <About />
       </HomeLayout>

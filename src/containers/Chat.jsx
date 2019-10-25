@@ -76,9 +76,6 @@ class Chat extends React.Component {
         <ChatBotom
           handleClick={this.handleClick}
         />
-        // <ChatBotom
-        //   // handleClick={this.handleClick}
-        // />
       );
     }
   }

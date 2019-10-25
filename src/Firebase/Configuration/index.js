@@ -9,13 +9,14 @@ export const firebaseConfig = {
   // messagingSenderId: encodeURIComponent(process.env.MESSAGINGSENDERID),
   // appId: encodeURIComponent(process.env.APPID),
   // measurementId: encodeURIComponent(process.env.MEASUREMENTID),
-  // url: process.env.URL
+  url: process.env.URL,
+  redirect: process.env.REDIRECT,
   apiKey: "AIzaSyAS2N0RgylWYBRXjyFw-KaqFnI380TfXF8",
-    authDomain: "labqt-a31fa.firebaseapp.com",
-    databaseURL: "https://labqt-a31fa.firebaseio.com",
-    projectId: "labqt-a31fa",
-    storageBucket: "labqt-a31fa.appspot.com",
-    messagingSenderId: "312384232440",
-    appId: "1:312384232440:web:f5756be8e3abdcbd64140d",
-    measurementId: "G-ZHV6FFGD9X"
+  authDomain: "labqt-a31fa.firebaseapp.com",
+  databaseURL: "https://labqt-a31fa.firebaseio.com",
+  projectId: "labqt-a31fa",
+  storageBucket: "labqt-a31fa.appspot.com",
+  messagingSenderId: "312384232440",
+  appId: "1:312384232440:web:f5756be8e3abdcbd64140d",
+  measurementId: "G-ZHV6FFGD9X"
 };

@@ -38,7 +38,7 @@ const Login = props => {
             className="media__img"><img width="40px" src={GooglePng} alt="Google" />Inicia sesión con Google</div>
           <div
             onClick={props.loginWithFacebook}
-            className="media__img"><img width="40px" src={FacebokPng} alt="Twitter" />Inicia sesión con Twitter</div>
+            className="media__img"><img width="40px" src={FacebokPng} alt="Facebook" />Inicia sesión con Facebook</div>
         </section>
         <p className="login__container--register">
           No tienes niguna cuenta. <Link to="/register">Regístrate</Link>

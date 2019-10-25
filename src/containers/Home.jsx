@@ -1,13 +1,8 @@
 import React from 'react';
 import HomeLayout from '../components/home-layout.jsx';
 import Header from '../components/Header.jsx';
-import Chat from './Chat.jsx';
-import Footer from '../components/Footer.jsx';
-import Login from '../components/Login.jsx';
 import About from '../components/About.jsx';
-import SingUp from '../components/Signup.jsx';
-import Post from './Post.jsx';
-import { firebaseConfig } from './../Firebase/Configuration'
+import { firebaseConfig } from './../firebase/Configuration'
 import SubHeader from '../components/subHeader.jsx';
 
 class Home extends React.Component {
@@ -191,39 +186,13 @@ class Home extends React.Component {
     }
   }
 
-
-  handleClickModal = e => {
-    console.log('Me hiciste un Click :O');
-    this.setState({
-      modalVisibility: true
-    });
-  }
-
-  closeModal = event => {
-    this.setState({
-      modalVisibility: false
-    })
-    console.log('click', this.state.modalVisibility);
-  }
-
   render() {
+    alert(`Es esto: ${firebaseConfig.redirect}`);
     return (
       <HomeLayout>
         <Header />
-        {/* <Login /> */}
-        {/* <SingUp /> */}
-        <SubHeader
-          closeModal={this.handleClickModal}
-        />
-        {/* <Chat /> */}
-        <Post
-          modalVisibility={this.state.modalVisibility}
-          modalPostActive={this.state.modalPostActive}
-          closeModal={this.closeModal}
-          payload={this.state.payload}
-        />
+        <SubHeader />
         <About />
-        {/* <Footer /> */}
       </HomeLayout>
     )
   }

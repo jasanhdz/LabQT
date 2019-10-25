@@ -17,7 +17,7 @@ const ChatLayout = props => {
       <div className="Container_Messages">
         <ul>
           {props.messages.map(msg => (
-            <li key={msg.id}>{msg.message}</li>
+            <p key={msg.id}>{msg.message}</p>
           ))}
         </ul>
       </div>

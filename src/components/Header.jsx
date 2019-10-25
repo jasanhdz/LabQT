@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/header.css";
-import BuapBlue from "../images/buap_blue.png";
-import react from "../images/react-logo.png";
+import BuapBlue from "../assets/images/buap_blue.png";
+import react from "../assets/images/react-logo.png";
 import { Link } from 'react-router-dom';
 import Avatar from '../assets/profile-2.png';
 

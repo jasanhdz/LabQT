@@ -1,10 +1,11 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const DotEnv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
   entry: {
-    home: ['babel-polyfill', path.resolve(__dirname, 'src/entries/home.js')],
+    home: ['babel-polyfill', path.resolve(__dirname, 'src/App.js')],
   },
   output: {
     filename: 'js/[name].js',
@@ -69,5 +70,8 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("css/[name].css"),
+    new DotEnv({
+      systemvars: true
+    })
   ]
 }

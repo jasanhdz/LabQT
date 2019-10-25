@@ -160,14 +160,7 @@ class Login extends React.Component {
       <HomeLayout>
         <Header />
         <LoginComponent
-          handleSubmit={this.onSubmit} 
-          handleFocus={this.handleFocus}
-          focusActive={this.state.focusActive}
-          removeFocus={this.removeFocus}
-          setRefEmail={this.refInputValueEmailLogin}
-          setRefPass={this.refInputValuePasswordLogin}
-          loginwhitGoogle={this.loginWithGoogle}
-          loginWithFacebook={this.loginWithFacebook}
+          
         />
         <About />
       </HomeLayout>
