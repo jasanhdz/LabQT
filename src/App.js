@@ -24,7 +24,7 @@ const history = createBrowserHistory({
 ReactDom.render(
   <Provider store={store}>
     <Router history={history}>
-      <App history={history}/>
+      <App />
     </Router>
   </Provider>,
   app

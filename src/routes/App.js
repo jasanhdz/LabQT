@@ -7,14 +7,14 @@ import SignUp from '../containers/Register.jsx';
 import NotFound from '../components/NotFound.jsx';
 require('dotenv').config();
 
-const App = (history) => (
-  <BrowserRouter history={history}>
+const App = () => (
+  <BrowserRouter >
     <Layout>
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
         <Route exact path={process.env.PUBLIC_URL + "/login"} component={Login}/>
         <Route exact path={process.env.PUBLIC_URL + "/register"}component={SignUp} />
-        <Route component={Home} />
+        <Route component={NotFound} />
       </Switch>
     </Layout>
   </BrowserRouter>
