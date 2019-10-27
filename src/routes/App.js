@@ -12,8 +12,8 @@ const App = () => (
     <Layout>
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/register" component={SignUp} />
+        <Route exact path={process.env.PUBLIC_URL + "/login"} component={Login}/>
+        <Route exact path={process.env.PUBLIC_URL + "/register"}component={SignUp} />
         <Route component={Home} />
       </Switch>
     </Layout>
