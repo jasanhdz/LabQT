@@ -7,8 +7,8 @@ import SignUp from '../containers/Register.jsx';
 import NotFound from '../components/NotFound.jsx';
 require('dotenv').config();
 
-const App = () => (
-  <BrowserRouter>
+const App = (history) => (
+  <BrowserRouter history={history}>
     <Layout>
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
