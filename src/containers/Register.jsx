@@ -47,24 +47,24 @@ class Register extends React.Component {
 
   handleSubmitRegistry = event => {
     event.preventDefault();
-    this.email = this.inputLoginEmail.value;
-    this.name = this.inputLoginName.value;
-    this.password = this.inputLoginPassword.value;
+    this.email = this.inputEmail.value;
+    this.name = this.inputName.value;
+    this.password = this.inputPassword.value;
     console.log(this.password, 'encriptado!');
     this.createAcountEmailPass(this.email, this.password, this.name);
   }
 
   // Obtenemos el valor de los input
   refInputValueName = event => {
-    this.inputLoginName = event;
+    this.inputName = event;
   }
 
   refInputValueEmail = event => {
-    this.inputLoginEmail = event;
+    this.inputEmail = event;
   }
 
   refInputValuePassword = event => {
-    this.inputLoginPassword = event;
+    this.inputPassword = event;
   }
 // Terminamos de obtener el valor de los input
 

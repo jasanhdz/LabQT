@@ -56,7 +56,7 @@ body {
   height: 77px;
   display: flex;
   align-items: center;
-  /* border: 1px solid yellow; */
+  border: 1px solid yellow;
   justify-content: center;
   /* position: fixed; */
   /* z-index: 3; */
@@ -69,15 +69,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* border: 1px solid pink; */
-}
-
-.Btn_Container {
-  /* display: flex;
-  width: 100px;
-  height: 35px;
-  justify-content: center;
-  border: 1px solid red; */
+  border: 1px solid pink;
 }
 
 .Btn_Primary {
@@ -105,7 +97,7 @@ body {
 .Fcqmin {
   padding: 6px;
   width: 12%;
-  animation: react;
+  /* animation: react; */
   animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-timing-function: steps(30);
@@ -138,12 +130,10 @@ body {
 
 .menu {
   display: flex;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   justify-content: flex-end;
   align-items: center;
   height: 100%;
-  /* width: 300px; */
-  /* justify-content: space-around; */
 }
 
 .menu li {

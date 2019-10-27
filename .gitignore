@@ -124,7 +124,7 @@ typings/
 .nuxt
 
 #React Webpack bundle
-dist/
+# dist/
 
 # vuepress build output
 .vuepress/dist

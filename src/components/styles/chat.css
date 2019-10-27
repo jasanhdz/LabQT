@@ -1,11 +1,11 @@
 .Chat_Container {
   /* margin: 20px; */
   position: absolute;
-  top: 76px;
   right: 0;
-  width: 300px;
+  bottom: 0;
+  width: 420px;
   height: 420px;
-  border: 1px solid;
+  /* border: 1px solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +23,7 @@
   padding-right: 10px;
   box-sizing: border-box;
   justify-content: space-between;
+  align-items: center;
 }
 
 .Container_Header p {
@@ -33,18 +34,44 @@
 
 .Container_Messages {
   display: flex;
-  width: 90%;
-  height: 70%;
-  border: 1px solid slateblue;
+  /* width: 90%; */
+  height: 77%;
   overflow-y: scroll;
 
 }
 
+.Container_Messages ul {
+  padding: 0 0 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.Container_Messages ul p {
+  margin: 0;
+  display: flex;
+  margin-bottom: 4px;
+  padding: 1px 7px;
+  border-radius: 8px;
+  max-width: 60%;
+}
+
+.Me_Message {
+  background-color: #94d05aa6;
+  align-self: flex-end;
+}
+
+.Your_Message {
+  align-self: flex-start;
+  background-color: #f9f9f9;
+}
+
 .Container_Message {
-  border: 1px solid;
+  /* border: 1px solid; */
   width: 100%;
   height: 12%;
   display: flex;
+  background-color: antiquewhite;
 }
 
 .Container_Message--input {
@@ -56,6 +83,8 @@
   font-size: 1.2em;
   font-family: sans-serif;
   resize: none;
+  /* border: 1px solid red; */
+  border-radius: 24px;
 }
 
 .Send {
@@ -68,4 +97,35 @@
 .CloseChat {
   font-size: 30px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .Chat_Container {
+    width: 100%;
+  }
+  .Container_Messages {
+    width: 100%;
+  }
+  .Send {
+    width: 8%;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Container_Messages ul {
+    width: 100%;
+  }
+  .Send {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Chat_Container {
+    height: 100%;
+  }
+  .Container_Message {
+    height: 8%;
+  }
 }

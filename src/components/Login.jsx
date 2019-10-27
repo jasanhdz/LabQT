@@ -10,7 +10,7 @@ const Login = props => {
     <section className="login">
       <div className="login__container">
         <h2 tabIndex="0">Inicia Sesión</h2>
-        <form onSubmit={props.handleSubmit} className="login__container--form" action="" method="post">
+        <form onSubmit={props.handleSubmit} className="login__container--form" method="post">
           <input
             aria-label="Correo"
             className="input" type="email" name="" placeholder="Correo"
@@ -34,7 +34,7 @@ const Login = props => {
         </form>
         <section className="social-media">
           <div
-            onClick={props.loginwhitGoogle}
+            onClick={props.loginWhitGoogle}
             className="media__img"><img width="40px" src={GooglePng} alt="Google" />Inicia sesión con Google</div>
           <div
             onClick={props.loginWithFacebook}

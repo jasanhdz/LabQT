@@ -2,76 +2,110 @@ import React from 'react';
 import Layout from '../components/Layout.jsx';
 import ChatLayout from '../components/chat-layout.jsx';
 import ChatBotom from '../components/chatBotom.jsx';
+import { connect } from 'react-redux';
 
 class Chat extends React.Component {
   constructor() {
     super() 
-    this.state = {
-      message: "",
-      messages: [
-        {
-          id: 0,
-          message: "Message 1",
-        },
-        {
-          id: 1,
-          message: "Message 2",
-        }
-      ],
-      chatVisibility: false,
-      chatBtn: true,
-    }
+    this.db = firebase.firestore();
+    this.db.settings({})
+  }
+
+  createMessage(uid, userName, email, message) {
+    return this.db.collection('messages').add({
+      uid: uid,
+      author: userName,
+      emailUser: email,
+      message: message,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+      .then(refDoc => {
+        console.log(`Id del message => ${refDoc.id}`)
+      })
+      .catch(error => {
+        console.log(error);
+    })
   }
 
   closeChat = e => {
     console.log('click', e);
-    this.setState({
-      chatVisibility: false,
-      chatBtn: true,
+    this.props.dispatch({
+      type: 'CLOSE_CHAT',
+      payload: {
+        chatVisibility: false,
+        chatBtn: true
+      }
     })
+  }
+
+  refTextArea = e => {
+    this.textarea = e;
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Enter');
-    let list = this.state.messages;
-    const newMessage = {
-      id: this.state.messages.length,
-      message: this.state.message
-    };
-    list.push(newMessage);
-    this.setState({
-      messages: list,
-    });
-    this.setState({
-      message: ''
-    })
+    const newMessage = this.props.message;
+    const user = firebase.auth().currentUser;
+
+    if (user) {
+      if (newMessage !== "") {
+        this.createMessage(
+          user.uid,
+          user.displayName,
+          user.email,
+          newMessage
+        )
+        this.props.dispatch({
+          type: 'SEND_MESSAGE',
+          payload: {
+            newMessage
+          }
+        })
+        this.textarea.focus();
+      } else {
+        this.textarea.focus();
+        console.log('No puedes enviar un mensaje vacío :p');
+      }
+    } else {
+      console.log("Debes estar authenticado")
+    }
   }
 
   updateMessage = (e) => {
-    this.setState({
-      message: e.target.value
+    this.props.dispatch({
+      type: 'UPDATE_MESSAGE',
+      payload: {
+        message: e.target.value
+      }
     });
   }
 
   handleClick = e => {
     console.log('poner chat');
-    this.setState({ chatVisibility: true, chatBtn: false })
+    this.props.dispatch({
+      type: 'OPEN_CHAT',
+      payload: {
+        chatVisibility: true,
+        chatBtn: false
+      }
+    })
   }
 
   LoadingChat() {
-    if (this.state.chatVisibility) {
+    if (this.props.chatIsVisibility) {
       return (
         <ChatLayout
             closeChat={this.closeChat}
-            messages={this.state.messages}
+            messages={this.props.messages}
             handleSubmit={this.handleSubmit}
             handleMessage={this.updateMessage}
-            inputMessage={this.state.message}
+            inputMessage={this.props.message}
+            refTextArea={this.refTextArea}
+            authUser={this.props.authUser}
          />
       );
     }
-    if (this.state.chatBtn) {
+    if (this.props.btnChat) {
       return (
         <ChatBotom
           handleClick={this.handleClick}
@@ -81,6 +115,7 @@ class Chat extends React.Component {
   }
 
   render() {
+    console.log(`Es aqui bro -> ${this.props.authUser}`);
     return (
       <Layout>
         {this.LoadingChat()}
@@ -89,4 +124,15 @@ class Chat extends React.Component {
   }
 };
 
-export default Chat;
+function mapStateToProps(state, props) {
+  return {
+    chatIsVisibility: state.get('modal').get('chatVisibility'),
+    messages: state.get('data').get('messages'),
+    message: state.get('data').get('message'),
+    btnChat: state.get('modal').get('chatBtn'),
+    authUser: state.get('data').get('user').get('userName')
+  }
+}
+
+export default connect(mapStateToProps)(Chat);
+
