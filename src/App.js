@@ -8,6 +8,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux'; 
 import reducer from './reducers/index';
 import { Map as map } from 'immutable';
+require('dotenv').config();
 
 const store = createStore(
   reducer,
@@ -16,7 +17,9 @@ const store = createStore(
 );
   
 const app = document.getElementById("app");
-const history = createBrowserHistory();
+const history = createBrowserHistory({
+  basename: process.env.PUBLIC_URL
+});
 
 ReactDom.render(
   <Provider store={store}>
