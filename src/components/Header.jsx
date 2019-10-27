@@ -4,7 +4,6 @@ import BuapBlue from "../assets/images/buap_blue.png";
 import react from "../assets/images/react-logo.png";
 import { Link } from 'react-router-dom';
 import Avatar from '../assets/profile-2.png';
-require('dotenv').config();
 
 const Header = props => {
   const styles = {
@@ -31,19 +30,19 @@ const Header = props => {
 
         <nav className="menu" id="listMenu">
           <li>
-            <Link to={process.env.PUBLIC_URL + '/'}>Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/login"}>Login</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/register"}>Register</Link>
+            <Link to="/register">Register</Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/About"}>Perfil</Link>
+            <Link to="/About">Perfil</Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/Cursos"}>Cursos</Link>
+            <Link to="/Cursos">Cursos</Link>
           </li>
         </nav>
         <span className="icon icon-menu" id="burguerMenu"></span>

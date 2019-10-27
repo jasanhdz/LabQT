@@ -5,7 +5,7 @@ const DotEnv = require('dotenv-webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    home: ['babel-polyfill', path.resolve(__dirname, 'src/App.js')],
+    home: ['babel-polyfill', path.join(__dirname, 'src/App.js')],
   },
   output: {
     filename: 'js/[name].js',
@@ -69,7 +69,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("css/[name].css"),
+    new ExtractTextPlugin("/css/[name][hash].css"),
     new DotEnv({
       systemvars: true
     })
