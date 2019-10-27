@@ -16,7 +16,9 @@ const store = createStore(
 );
   
 const app = document.getElementById("app");
-const history = createBrowserHistory();
+const history = createBrowserHistory({
+  basename: "https://jasanhdz.github.io/LabQT/public/"
+});
 
 ReactDom.render(
   <Provider store={store}>

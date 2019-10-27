@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Proyecto para el laboratorio de Química teorica",
   "main": "index.js",
+  "homepage": "https://jasanhdz.github.io/LabQT/public/",
   "scripts": {
     "server": "webpack-dev-server --progress --color --config ./webpack.dev.config.js",
     "build:dev": "webpack --config ./webpack.dev.config.js",
