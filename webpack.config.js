@@ -5,7 +5,7 @@ const DotEnv = require('dotenv-webpack');
 
 module.exports = (env) => {
   let plugins = [
-    new ExtractTextPlugin("css/[name][hash].css"),
+    new ExtractTextPlugin("/css/[name][hash].css"),
     new DotEnv({
       systemvars: true
     })
@@ -32,6 +32,26 @@ module.exports = (env) => {
     },
     node: {
       fs: 'empty',
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'async',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            name: 'vendors',
+            chunks: 'all',
+            reuseExistingChunk: true,
+            priority: 1,
+            filename: 'js/vendor-[hash].js',
+            enforce: true,
+            test(module, chunks) {
+              const name = module.nameForCondition && module.nameForCondition();
+              return chunks.some(chunks => chunks.name !== 'vendor' && /[\\/]node_modules[\\/]/.test(name));
+            },
+          },
+        },
+      },
     },
     // devServer: {
     //   port: 9000,
