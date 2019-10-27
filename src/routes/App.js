@@ -8,7 +8,7 @@ import NotFound from '../components/NotFound.jsx';
 require('dotenv').config();
 
 const App = () => (
-  <BrowserRouter path={process.env.PUBLIC_URL + '/'}>
+  <BrowserRouter>
     <Layout>
       <Switch>
         <Route exact path="/" component={Home}/>
