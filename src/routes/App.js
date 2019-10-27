@@ -11,7 +11,7 @@ const App = () => (
   <BrowserRouter>
     <Layout>
       <Switch>
-        <Route exact path="/" component={Home}/>
+        <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={SignUp} />
         <Route component={Home} />
