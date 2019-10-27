@@ -45,7 +45,13 @@ class Login extends React.Component {
 
     firebase.auth().signInWithPopup(provider)
       .then(result => {
-
+        this.props.dispatch({
+          type: 'LOGIN',
+          payload: {
+            uriProfile: result.user.photoURL,
+            userName: result.user.displayName,
+          }
+        })
         this.props.history.push('/');
       // window.location.href = firebaseConfig.url
       console.log(result.user, 'usuarioLogin');
@@ -61,8 +67,14 @@ class Login extends React.Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(result => {
       if (result.user.emailVerified) {
-
-        this.props.history.push('/');
+        this.props.dispatch({
+          type: 'LOGIN',
+          payload: {
+            uriProfile: result.user.photoURL,
+            userName: result.user.displayName,
+          }
+        })
+        this.props.history.push(process.env.PUBLIC_URL + '/');
       } else {
         firebase.auth().signOut();
         alert(`Por favor realiza la verificación de la cuenta`)
