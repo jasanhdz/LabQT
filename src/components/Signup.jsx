@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/login.css';
 import { Link } from 'react-router-dom';
+require('dotenv').config();
 
 const SignUp = props => {
   return (
@@ -13,7 +14,7 @@ const SignUp = props => {
         <input className="input" type="password" ref={props.setRefPass} placeholder="Contraseña" />
         <button onSubmit={props.handleSubmitRegistry} className="button">Registrarse</button>
       </form>
-      <p className="login__container--register center"><Link to="/login">Iniciar sesión</Link></p>
+      <p className="login__container--register center"><Link to={process.env.PUBLIC_URL + '/login'}>Iniciar sesión</Link></p>
     </div>
   </section>
   );

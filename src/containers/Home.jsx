@@ -5,6 +5,7 @@ import About from '../components/About.jsx';
 import SubHeader from '../components/subHeader.jsx';
 import { connect } from 'react-redux';
 import Chat from './Chat.jsx';
+import Publication from './Publications.jsx';
 
 class Home extends React.Component {
   constructor() {
@@ -87,6 +88,7 @@ class Home extends React.Component {
       <HomeLayout>
         <Header />
         <SubHeader />
+        <Publication />
         <About />
         <Chat
           
@@ -98,7 +100,7 @@ class Home extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    user: state.get('data').get('user')
+    user: state.get('data').get('user'),
   }
 }
 

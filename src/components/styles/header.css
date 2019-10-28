@@ -31,7 +31,11 @@ body {
 
 .React {
   width: 60px;
-  /* padding: 0 10; */
+  /* animation: react 4s; */
+  animation-timing-function: steps(30);
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  margin: 0 7px;
 }
 
 .active {

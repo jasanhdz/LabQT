@@ -4,6 +4,7 @@ import ChatLayout from '../components/chat-layout.jsx';
 import ChatBotom from '../components/chatBotom.jsx';
 import { connect } from 'react-redux';
 import { obtenerFecha, obtenerHora } from '../widgets/util/date-format';
+require('dotenv').config();
 
 class Chat extends React.Component {
   constructor() {
@@ -130,13 +131,20 @@ class Chat extends React.Component {
 
   handleClick = e => {
     console.log('poner chat');
-    this.props.dispatch({
-      type: 'OPEN_CHAT',
-      payload: {
-        chatVisibility: true,
-        chatBtn: false
-      }
-    })
+    if (this.props.authUser) {
+      this.props.dispatch({
+        type: 'OPEN_CHAT',
+        payload: {
+          chatVisibility: true,
+          chatBtn: false
+        }
+      })
+    } else {
+      console.log('Debes estár autenticado para poder acceder al chat');
+      alert('Debes estár autenticado para poder acceder al chat');
+      // this.props.history.push(process.env.PUBLIC_URL + '/');
+      window.location.href = process.env.PUBLIC_URL + '/login';
+    }
   }
 
   async componentDidMount() {

@@ -6,7 +6,7 @@ class Post extends React.Component {
   constructor() {
     super()
     this.db = firebase.firestore();
-    const settings = { timestampsInSnapshots: true }
+    const settings = {}
     this.db.settings(settings);
     this.state = {}
   }
@@ -127,10 +127,6 @@ class Post extends React.Component {
 
   }
 
-  // shouldComponentUpdate() {
-  //   sessionStorage.setItem('imgNewPost', null);
-  //   console.log('sessionStorage:' ,sessionStorage.getItem('imgNewPost', null));
-  // }
   render() {
     return (
       <PostLayout>

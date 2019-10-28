@@ -31,7 +31,11 @@ body {
 
 .React {
   width: 60px;
-  /* padding: 0 10; */
+  /* animation: react 4s; */
+  animation-timing-function: steps(30);
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  margin: 0 7px;
 }
 
 .active {
@@ -173,20 +177,24 @@ body {
   justify-content: center;
   height: 50px;
   box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+  padding-top: 70px;
 }
 
 .SubMenu {
   display: inherit;
-    width: 700px;
+    /* width: 700px; */
+    width: 100%;
+    padding: 0;
     align-items: center;
-    justify-content: space-evenly;
+    height: 100%;
+    margin: 0;
 }
 
 .SubMenu li {
   align-items: center;
     text-decoration: none;
     display: flex;
-    justify-content: inherit;
+    justify-content: center;
     cursor: pointer;
     /* border: 1px solid red; */
     width: 100%;
@@ -383,6 +391,22 @@ body {
 
 .Btn__chat:active {
   transform: scale(.8);
+}.Title {
+  text-align: center;
+}
+
+.Document_Wrapper {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.Content {
+  text-align: justify;
+  
 }.login {
   background: linear-gradient(#00395E, #00885b); 
   /* #21C08B */

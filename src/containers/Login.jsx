@@ -3,7 +3,6 @@ import LoginComponent from '../components/Login.jsx';
 import HomeLayout from '../components/home-layout.jsx';
 import Header from '../components/Header.jsx';
 import About from '../components/About.jsx';
-import { firebaseConfig } from '../firebase/Configuration/';
 import { connect } from 'react-redux';
 require('dotenv').config();
 
@@ -52,7 +51,7 @@ class Login extends React.Component {
             userName: result.user.displayName,
           }
         })
-        this.props.history.push('/');
+        this.props.history.push(process.env.PUBLIC_URL + '/');
       // window.location.href = firebaseConfig.url
       console.log(result.user, 'usuarioLogin');
     })

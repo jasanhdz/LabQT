@@ -44,19 +44,22 @@ class Header extends React.Component {
   
           <nav ref={this.refHeaderMenu} className="menu" id="listMenu">
             <li>
-              <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
+              <Link to={process.env.PUBLIC_URL + "/programas"}>Programas</Link>
             </li>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/login"}>Login</Link>
+              <Link to={process.env.PUBLIC_URL + "/servicio-socila"}>Servicio Social</Link>
             </li>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/register"}>Register</Link>
+              <Link to={process.env.PUBLIC_URL + "/practices"}>Prácticas Profesionales</Link>
             </li>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/About"}>Perfil</Link>
+              <Link to={process.env.PUBLIC_URL + "/ciencia"}>Ciencia</Link>
             </li>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/Cursos"}>Cursos</Link>
+              <Link to={process.env.PUBLIC_URL + "/desarollo"}>Desarollo de Proyectos</Link>
+            </li>
+            <li>
+              <a href={process.env.PUBLIC_URL + "#footer"}>Más...</a>
             </li>
         </nav>
     

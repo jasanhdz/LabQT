@@ -3,6 +3,7 @@ import './styles/login.css';
 import { Link } from 'react-router-dom';
 import GooglePng from '../assets/google.png';
 import FacebokPng from '../assets/facebook.png';
+require('dotenv').config();
 
 const Login = props => {
   return (
@@ -41,7 +42,7 @@ const Login = props => {
             className="media__img"><img width="40px" src={FacebokPng} alt="Facebook" />Inicia sesión con Facebook</div>
         </section>
         <p className="login__container--register">
-          No tienes niguna cuenta. <Link to="/register">Regístrate</Link>
+          No tienes niguna cuenta. <Link to={process.env.PUBLIC_URL + '/register'}>Regístrate</Link>
         </p>
       </div>
     </section>

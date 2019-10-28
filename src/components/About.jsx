@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+require('dotenv').config
 
 const About = () => {
   return (
-    <footer className="Footer">
-      <a href="/">Terminos de uso</a>
-      <a href="/">Declaración de privacidad</a>
-      <a href="/">Centro de ayuda</a>
+    <footer id="footer" className="Footer">
+      <Link to={process.env.PUBLIC_URL + '/uso'}>Terminos de uso</Link>
+      <Link to={process.env.PUBLIC_URL + '/privacidad'}>Declaración de privacidad</Link>
+      <Link to={process.env.PUBLIC_URL + '/ayuda'}>Centro de ayuda</Link>
     </footer>
   );
 };
