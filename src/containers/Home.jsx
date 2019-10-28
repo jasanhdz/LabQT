@@ -13,27 +13,6 @@ class Home extends React.Component {
     this.db.settings({});
   }
 
-  async checkAllPost() {
-    await this.db.collection('messages')
-    .orderBy('date', 'asc')
-    .onSnapshot(querySnapshot => {
-     if(querySnapshot) {
-       let data = [];
-         querySnapshot.forEach(element => {
-           data.push(element.data());
-         })
-       console.log(data);
-       this.props.dispatch({
-         type: 'LOADING_MESSAGES',
-         payload: data,
-       })
-       // console.log('Soy yo :)', this.state.payload);
-     } else {
-       console.log('No hay Posts............... :(');
-     }
-   })
- }
-
  async checkPostByUser(emailUser) {
   await this.db.collection('posts')
   .orderBy('date', 'asc')
@@ -88,8 +67,6 @@ class Home extends React.Component {
         });
       }
     })
-
-    await this.checkAllPost();
   }
 
   render() {

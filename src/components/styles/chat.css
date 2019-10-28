@@ -41,33 +41,60 @@
 }
 
 .Container_Messages ul {
-  padding: 0 0 0 10px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0 10px;
+  box-sizing: content-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.Container_Messages ul p {
-  margin: 0;
-  display: flex;
-  margin-bottom: 4px;
-  padding: 1px 7px;
-  border-radius: 8px;
-  max-width: 60%;
+
+
+.Message_Author {
+  font-size: 10px;
+  margin-left: 2px;
+  color: orange;
+}
+
+.Message_Hour {
+  font-size: 10px;
+  text-align: right;
+  color: gray;
 }
 
 .Me_Message {
   background-color: #94d05aa6;
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
   align-self: flex-end;
+  border-radius: 14px;
+  padding: 6px 4px;
+  margin-bottom: 5px;
+}
+
+.Me_Message p {
+  width: 100%;
+  margin: 0;
 }
 
 .Your_Message {
   align-self: flex-start;
   background-color: #f9f9f9;
+  border-radius: 14px;
+  padding: 6px 4px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.Your_Message p {
+  width: 100%;
+  margin: 0;
 }
 
 .Container_Message {
-  /* border: 1px solid; */
+  /* border: 1px solid red; */
   width: 100%;
   height: 12%;
   display: flex;
@@ -123,7 +150,7 @@
 
 @media screen and (max-width: 500px) {
   .Chat_Container {
-    height: 100%;
+    height: 90%;
   }
   .Container_Message {
     height: 8%;

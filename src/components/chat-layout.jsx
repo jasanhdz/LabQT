@@ -4,11 +4,25 @@ import { IoIosCloseCircle, IoMdInformationCircle } from 'react-icons/io';
 
 function fetchMessages(msg, index, user) {
   if (msg.get('author') === user) {
-    return <p className="Me_Message" key={index}>{msg.get('message')}</p>
+    return (
+      <div key={index} className="Me_Message" >
+        <p>{msg.get('message')}</p>
+        <p className="Message_Hour">{msg.get('hour')}</p>
+      </div>
+    )
   } else {
-    return <p className="Your_Message" key={index}>{msg.get('message')}</p>
+    return (
+      <div key ={index} className = "Your_Message">
+        <p className="Message_Author">{msg.get('author')}</p>
+        <p> {msg.get('message')}</p >
+        <p className="Message_Hour">{msg.get('hour')}</p>
+      </div>
+    )
   }
+  // content.scrollTo = content.scrollHeight;
+  // document.getElementById('content').scrollHeight
 }
+
 
 const ChatLayout = props => {
   return (
@@ -22,7 +36,7 @@ const ChatLayout = props => {
           className="CloseChat"
         />
       </div>
-      <div className="Container_Messages">
+      <div id="content" ref={props.refContainerMessages} className="Container_Messages">
         <ul>
           {props.messages.map((msg, index) => {
             return fetchMessages(msg, index, props.authUser)

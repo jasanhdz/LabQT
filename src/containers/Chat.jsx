@@ -3,6 +3,7 @@ import Layout from '../components/Layout.jsx';
 import ChatLayout from '../components/chat-layout.jsx';
 import ChatBotom from '../components/chatBotom.jsx';
 import { connect } from 'react-redux';
+import { obtenerFecha, obtenerHora } from '../widgets/util/date-format';
 
 class Chat extends React.Component {
   constructor() {
@@ -10,6 +11,38 @@ class Chat extends React.Component {
     this.db = firebase.firestore();
     this.db.settings({})
   }
+
+  async checkAllPost() {
+    await this.db.collection('messages')
+    .orderBy('date', 'asc')
+    .onSnapshot(querySnapshot => {
+     if(querySnapshot) {
+       let data = [];
+       querySnapshot.forEach(element => {
+         data.push({
+           author: element.data().author,
+           date: obtenerFecha(element.data().date.toDate()),
+           hour: obtenerHora(element.data().date.toDate()),
+           emailUser: element.data().emailUser,
+           message: element.data().message,
+           uid: element.data().uid
+         });
+        })
+       console.log(data);
+       this.props.dispatch({
+         type: 'LOADING_MESSAGES',
+         payload: data,
+       })
+       if (this.props.chatIsVisibility) {
+        console.log(this.containerMessages.scrollTop || 0);
+        console.log(this.containerMessages.scrollHeight || 0);
+        this.containerMessages.scrollTop = this.containerMessages.scrollHeight;
+      }
+     } else {
+       console.log('No hay Posts............... :(');
+     }
+   })
+ }
 
   createMessage(uid, userName, email, message) {
     return this.db.collection('messages').add({
@@ -40,13 +73,27 @@ class Chat extends React.Component {
 
   refTextArea = e => {
     this.textarea = e;
+    if (this.props.chatIsVisibility) {
+      this.textarea.focus();
+    }
+  }
+
+  refContainerMessages = e => {
+    this.containerMessages = e;
+    if (this.props.chatIsVisibility) {
+      console.log(this.containerMessages.scrollTop || 0);
+      console.log(this.containerMessages.scrollHeight || 0);
+      this.containerMessages.scrollTop = this.containerMessages.scrollHeight;
+    }
+    // if (this.containerMessages.scrollTop !== null && this.containerMessages.scrollHeight !== null) {
+    // }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const newMessage = this.props.message;
     const user = firebase.auth().currentUser;
-
+    
     if (user) {
       if (newMessage !== "") {
         this.createMessage(
@@ -61,6 +108,7 @@ class Chat extends React.Component {
             newMessage
           }
         })
+        this.containerMessages.scrollTop = this.containerMessages.scrollHeight;
         this.textarea.focus();
       } else {
         this.textarea.focus();
@@ -91,18 +139,26 @@ class Chat extends React.Component {
     })
   }
 
+  async componentDidMount() {
+    await this.checkAllPost();
+  }
+
+
   LoadingChat() {
+    // console.log(`Es aqui bro -> ${this.props.authUser}`);
+
     if (this.props.chatIsVisibility) {
       return (
         <ChatLayout
-            closeChat={this.closeChat}
-            messages={this.props.messages}
-            handleSubmit={this.handleSubmit}
-            handleMessage={this.updateMessage}
-            inputMessage={this.props.message}
-            refTextArea={this.refTextArea}
-            authUser={this.props.authUser}
-         />
+          closeChat={this.closeChat}
+          messages={this.props.messages}
+          handleSubmit={this.handleSubmit}
+          handleMessage={this.updateMessage}
+          inputMessage={this.props.message}
+          refTextArea={this.refTextArea}
+          refContainerMessages={this.refContainerMessages}
+          authUser={this.props.authUser}
+        /> 
       );
     }
     if (this.props.btnChat) {
@@ -115,7 +171,6 @@ class Chat extends React.Component {
   }
 
   render() {
-    console.log(`Es aqui bro -> ${this.props.authUser}`);
     return (
       <Layout>
         {this.LoadingChat()}
