@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/chat.css";
-import { IoIosCloseCircle, IoMdInformationCircle } from 'react-icons/io';
+// import { IoIosCloseCircle, IoMdInformationCircle } from 'react-icons/io';
 
 function fetchMessages(msg, index, user) {
   if (msg.get('author') === user) {
@@ -28,13 +28,15 @@ const ChatLayout = props => {
   return (
     <div className="Chat_Container">
       <div className="Container_Header">
-        <IoIosCloseCircle
+        <p
           onClick={props.closeChat}
           className="CloseChat"
-        />
-        <IoMdInformationCircle
-          className="CloseChat"
-        />
+        >X</p>
+        {/* <IoIosCloseCircle
+        /> */}
+        <p className="CloseChat">:</p>
+        {/* <IoMdInformationCircle
+        /> */}
       </div>
       <div id="content" ref={props.refContainerMessages} className="Container_Messages">
         <ul>

@@ -73,7 +73,7 @@ class Home extends React.Component {
     console.log(this.props.user);
     return (
       <HomeLayout>
-        <Header />
+        {/* <Header /> */}
         <SubHeader />
         <About />
         <Chat

@@ -150,7 +150,7 @@
 
 @media screen and (max-width: 500px) {
   .Chat_Container {
-    height: 90%;
+    height: 100%;
   }
   .Container_Message {
     height: 8%;
