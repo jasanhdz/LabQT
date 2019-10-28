@@ -171,11 +171,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    return (
-      <Layout>
-        {this.LoadingChat()}
-      </Layout>
-    );
+    return this.LoadingChat();
   }
 };
 
