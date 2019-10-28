@@ -1,49 +1,3 @@
-@font-face {
-  font-family: 'icomoon';
-  src:  url('../../assets/fonts/icomoon.eot?2uxhnr');
-  src:  url('../../assets/fonts/icomoon.eot?2uxhnr#iefix') format('embedded-opentype'),
-    url('../../assets/fonts/icomoon.ttf?2uxhnr') format('truetype'),
-    url('../../assets/fonts/icomoon.woff?2uxhnr') format('woff'),
-    url('../../assets/fonts/icomoon.svg?2uxhnr#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-lifebuoy:before {
-  content: "\e941";
-}
-.icon-phone:before {
-  content: "\e942";
-}
-.icon-bubble:before {
-  content: "\e96b";
-}
-.icon-bubbles:before {
-  content: "\e96c";
-}
-.icon-user:before {
-  content: "\e971";
-}
-.icon-menu:before {
-  content: "\e9bd";
-}
-
 body {
   margin: 0;
   font-family: sans-serif;
@@ -53,56 +7,45 @@ body {
 .header {
   width: 100%;
   background-color: #00395E;
-  height: 77px;
   display: flex;
   align-items: center;
-  border: 1px solid yellow;
   justify-content: center;
-  /* position: fixed; */
-  /* z-index: 3; */
+  position: fixed;
+  /* border: 1px solid greenyellow; */
+  justify-content: space-around;
 }
 
-.wrapper {
-  padding: 0 20px;
-  width: 1100px;
-  height: 100%;
+.Logos {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 1px solid pink;
 }
 
-.Btn_Primary {
-  background: #7acc2d;
-  border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  transition: 0.4s;
-  padding: 10px 15px;
+.Content__QT {
+  display: flex;
+}
+
+.Logo__Name {
   color: white;
-  outline: 0;
-  border: none;
-  box-shadow: none;
+  font-weight: bold;
+}
+
+.React {
+  width: 60px;
+  /* padding: 0 10; */
+}
+
+.active {
+  background-color: #021d2f;
+}
+
+.menu.active {
+
+}
+
+.Burger__Menu {
+  display: none;
+  padding: 10px;
   cursor: pointer;
-}
-
-.Btn_Primary:active {
-  transform: scale(.6);
-}
-
-.BuapLogo {
-  align-self: center;
-}
-
-.Fcqmin {
-  padding: 6px;
-  width: 12%;
-  /* animation: react; */
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps(30);
-  animation-fill-mode: forwards;
-  will-change: trasform;
 }
 
 @keyframes react {
@@ -130,7 +73,7 @@ body {
 
 .menu {
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   justify-content: flex-end;
   align-items: center;
   height: 100%;
@@ -164,78 +107,63 @@ body {
   font-size: 2em;
 }
 
-@media screen and (max-width: 1150px) {
-  .Fcqmin {
-    width: 15%;
-  }
-}
 
 @media screen and (max-width: 900px) {
-  .Fcqmin {
-    width: 20%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .Fcqmin {
-    width: 18%;
-  }
- 
-  .icon-menu {
-    height: 100%;
-    width: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .header {
+    justify-content: space-between;
+    padding: 0 11px;
+    box-sizing: border-box;
   }
   .menu {
     display: none;
   }
+  .menu li {
+    margin: 2px;
+    box-sizing: border-box;
+  }
+  .Burger__Menu {
+    display: inherit;
+  }
+  .Burger__Menu.active {
+    background-color: #021d2f;
+  }
   .menu.active {
-    width: 100%;
-    background-color: rgba(28, 54, 67, .9);
-    z-index: 2;
     display: flex;
-    position: fixed;
+    top: 68px;
+    box-sizing: content-box;
     flex-direction: column;
-    top: 77px;
+    width: 100%;
     right: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
+    bottom: 0;
+    position: fixed;
+    background-color: #1e3240e0;
+    justify-content: center;
+    overflow-y: scroll;
   }
 
   .menu li {
     height: auto;
-    /* border: 1px solid red; */
-    text-align: initial;
-    display: flex;
-    justify-content: flex-start;
     width: 100%;
-    margin-left: 40px;
   }
-
   .menu li:hover {
-    background-color: unset;
-  }
-  .menu li:hover a {
-    color: red;
-    transition: .3s;
+    background-color: #00395E;
   }
 }
 
-@media screen and (max-width: 500px) {
-  .Fcqmin {
-    width: 25%;
-    padding: 0;
+@media screen and (max-width: 450px) {
+  .React {
+    width: 50px;
   }
-  .Container_logo--react {
-    justify-content: space-evenly;
-  }
-}
-
-@media screen and (max-width:530px) {
-  .header {
+  .Logo__Name {
     font-size: .8em;
   }
+  .BuapLogo {
+    height: 50px;
+  }
 }
 
+@media screen and (max-width: 352px) {
+  .BuapLogo {
+    display: none;
+  }
+}

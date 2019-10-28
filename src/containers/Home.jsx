@@ -51,7 +51,19 @@ class Home extends React.Component {
     }
   }
 
+  windowListener() {
+    this.consulta = window.matchMedia('(max-width: 900px)');
+    this.consulta.addListener(() => {
+      if (this.consulta.matches) {
+        console.log('Se cumplio la condición');
+      } else {
+        console.log('no se cumplio la condición');
+      }
+    });
+  }
+
   async componentDidMount() {
+    this.windowListener();
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // console.log(user.displayName);
@@ -73,7 +85,7 @@ class Home extends React.Component {
     console.log(this.props.user);
     return (
       <HomeLayout>
-        {/* <Header /> */}
+        <Header />
         <SubHeader />
         <About />
         <Chat

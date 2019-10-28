@@ -8,6 +8,8 @@
   padding: 30px 0;
   font-family: "Muli", sans-serif;
   min-height: calc(100vh - 200px);
+  /* solo si el header es fixed */
+  padding-top: 95px;
 }
 
 .login__container {
@@ -15,7 +17,7 @@
   border: 2px solid white;
   border-radius: 40px;
   color: white;
-  padding: 50px 70px 40px;
+  padding: 0 70px;
   /* margin-bottom: 50px; */
   min-height: 540px;
   width: 300px;
@@ -26,6 +28,7 @@
 
 .login__container h2 {
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .login__container--form {
@@ -71,6 +74,7 @@
 
 .login__container--register {
   font-size: 14px;
+  text-align: center;
 }
 
 .login__container--register a {
