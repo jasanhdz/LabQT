@@ -42,10 +42,6 @@ body {
   background-color: #021d2f;
 }
 
-.menu.active {
-
-}
-
 .Burger__Menu {
   display: none;
   padding: 10px;
@@ -145,6 +141,10 @@ body {
     overflow-y: scroll;
   }
 
+  .active  .Btn__chat {
+    z-index: -1;
+  }
+
   .menu li {
     height: auto;
     width: 100%;
@@ -207,7 +207,7 @@ body {
 .SubMenu li:hover {
   background-color: #00395E;
 }.Chat_Container {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   width: 420px;
@@ -371,7 +371,7 @@ body {
     height: 16%;
   }
 } */.Btn__chat {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   width: 150px;
@@ -386,6 +386,9 @@ body {
   outline: 0;
   border: none;
   margin: 5px 10px;
+}
+
+.before {
   z-index: -1;
 }
 
@@ -398,6 +401,7 @@ body {
 .Document_Wrapper {
   margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   padding: 0 10px;

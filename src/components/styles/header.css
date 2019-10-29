@@ -42,10 +42,6 @@ body {
   background-color: #021d2f;
 }
 
-.menu.active {
-
-}
-
 .Burger__Menu {
   display: none;
   padding: 10px;
@@ -143,6 +139,10 @@ body {
     background-color: #1e3240e0;
     justify-content: center;
     overflow-y: scroll;
+  }
+
+  .active  .Btn__chat {
+    z-index: -1;
   }
 
   .menu li {

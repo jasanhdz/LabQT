@@ -7,6 +7,7 @@ const ChatBotom = props => {
       type="button"
       className="Btn__chat"
       onClick={props.handleClick}
+      ref={props.refChatButton}
     >
       Chat
     </button>

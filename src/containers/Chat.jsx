@@ -147,8 +147,18 @@ class Chat extends React.Component {
     }
   }
 
+
   async componentDidMount() {
     await this.checkAllPost();
+  }
+
+  refChatButton = e => {
+    this.props.dispatch({
+      type: 'REF_CHAT_BUTTON',
+      payload: {
+        htmlbutton: e,
+      }
+    })
   }
 
 
@@ -173,6 +183,7 @@ class Chat extends React.Component {
       return (
         <ChatBotom
           handleClick={this.handleClick}
+          refChatButton={this.refChatButton}
         />
       );
     }

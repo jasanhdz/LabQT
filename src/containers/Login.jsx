@@ -12,6 +12,28 @@ class Login extends React.Component {
     this.db = firebase.firestore();
     // const settings = { timestampsInSnapshots: true } 
     this.db.settings({});
+    this.header = [
+      {
+        title: 'Programas',
+        link: '/programas'
+      },
+      {
+        title: 'Servicio Social',
+        link: '/servicio-social'
+      },
+      {
+        title: 'Prácticas Profesionales',
+        link: '/practicas'
+      },
+      {
+        title: 'Ciencia',
+        link: '/ciencia'
+      },
+      {
+        title: 'Desarrollo de Proyectos',
+        link: '/proyectos'
+      },
+    ]
   }
 
   // Métodos para acceder a los Servicios de Firebase
@@ -114,7 +136,9 @@ class Login extends React.Component {
   render() {
     return (
       <HomeLayout>
-        <Header />
+        <Header
+          links={this.header}
+        />
         <LoginComponent
           setRefEmail={this.refInputEmail}
           setRefPass={this.refInputPassword}

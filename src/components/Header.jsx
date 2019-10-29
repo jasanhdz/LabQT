@@ -4,6 +4,7 @@ import BuapBlue from "../assets/images/buap_blue.png";
 import react from "../assets/images/react-logo.png";
 import { Link } from 'react-router-dom';
 import BurgerMenu from '../assets/menu/menu_white.png';
+import { connect } from "react-redux";
 require('dotenv').config();
 
 
@@ -11,7 +12,10 @@ class Header extends React.Component {
 
    burgerMenuClick = e => {
     this.headerMenu.classList.toggle('active');
-    this.burgerButton.classList.toggle('active');
+     this.burgerButton.classList.toggle('active');
+     if (this.props.chatButton) {
+       this.props.chatButton.classList.toggle('before');
+     }
   }
 
   refHeaderMenu = e => {
@@ -23,6 +27,8 @@ class Header extends React.Component {
   }
 
   render() {
+    console.log('0000000000000');
+    console.log(this.props.chatButton);
     return (
       <div className="header">
   
@@ -42,22 +48,16 @@ class Header extends React.Component {
           <img src={BurgerMenu}></img>
           </span>
   
-          <nav ref={this.refHeaderMenu} className="menu" id="listMenu">
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/programas"}>Programas</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/servicio-socila"}>Servicio Social</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/practices"}>Prácticas Profesionales</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/ciencia"}>Ciencia</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/desarollo"}>Desarollo de Proyectos</Link>
-            </li>
+        <nav ref={this.refHeaderMenu} className="menu" id="listMenu">
+          {
+            this.props.links.map((link, index) => {
+              return (
+                <li key={index}>
+                  <Link to={process.env.PUBLIC_URL + link.link}>{link.title}</Link>
+                </li>
+              )
+            })
+          }
             <li>
               <a href={process.env.PUBLIC_URL + "#footer"}>Más...</a>
             </li>
@@ -68,4 +68,10 @@ class Header extends React.Component {
   }
 };
 
-export default Header;
+function mapStateToProps(state, action) {
+  return {
+    chatButton: state.get('modal').get('htmlbutton')
+  }
+}
+
+export default connect(mapStateToProps)(Header);

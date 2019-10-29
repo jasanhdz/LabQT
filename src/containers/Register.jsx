@@ -7,10 +7,29 @@ import { firebaseConfig } from '../firebase/Configuration'
 
 class Register extends React.Component {
   constructor() {
-    super() 
-    this.state = {
-      focusActive: true,
-    }
+    super()
+    this.header = [
+      {
+        title: 'Programas',
+        link: '/programas'
+      },
+      {
+        title: 'Servicio Social',
+        link: '/servicio-social'
+      },
+      {
+        title: 'Prácticas Profesionales',
+        link: '/practicas'
+      },
+      {
+        title: 'Ciencia',
+        link: '/ciencia'
+      },
+      {
+        title: 'Desarrollo de Proyectos',
+        link: '/proyectos'
+      },
+    ]  
   }
 
 
@@ -71,7 +90,9 @@ class Register extends React.Component {
   render() {
     return (
       <HomeLayout>
-        <Header />
+        <Header
+          links={this.header}
+        />
         <SignUp
           handleSubmitRegistry={this.handleSubmitRegistry}
           setRefName={this.refInputValueName}

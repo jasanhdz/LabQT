@@ -12,6 +12,28 @@ class Home extends React.Component {
     super();
     this.db = firebase.firestore();
     this.db.settings({});
+    this.header = [
+      {
+        title: 'Inicio',
+        link: '/'
+      },
+      {
+        title: 'Servicio Social',
+        link: '/servicio-social'
+      },
+      {
+        title: 'Prácticas Profesionales',
+        link: '/practicas'
+      },
+      {
+        title: 'Ciencia',
+        link: '/ciencia'
+      },
+      {
+        title: 'Desarrollo de Proyectos',
+        link: '/Más...'
+      },
+    ]
   }
 
  async checkPostByUser(emailUser) {
@@ -86,7 +108,9 @@ class Home extends React.Component {
     console.log(this.props.user);
     return (
       <HomeLayout>
-        <Header />
+        <Header
+          links={this.header}
+        />
         <SubHeader />
         <Publication />
         <About />
