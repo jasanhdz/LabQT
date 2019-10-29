@@ -21,7 +21,7 @@ const store = createStore(
 console.log(initialState);
 const app = document.getElementById("app");
 const history = createBrowserHistory({
-  basename: process.env.BASE_URL
+  basename: process.env.PUBLIC_URL
 });
 
 ReactDom.render(
