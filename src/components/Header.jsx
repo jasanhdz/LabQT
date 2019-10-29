@@ -26,6 +26,20 @@ class Header extends React.Component {
     this.burgerButton = e;
   }
 
+  logOut = e => {
+    if (this.props.user) {
+      firebase.auth().signOut()
+        .then(() => {
+          this.props.history.push(process.env.PUBLIC_URL + '/');
+        })
+        .catch(error => {
+          alert(error);
+      })
+    } else {
+      alert('No haz iniciado sesión :p');
+    }
+  }
+
   render() {
     console.log('0000000000000');
     console.log(this.props.chatButton);
@@ -60,7 +74,8 @@ class Header extends React.Component {
           }
             <li>
               <a href={process.env.PUBLIC_URL + "#footer"}>Más...</a>
-            </li>
+          </li>
+          <li onClick={this.logOut}>Logout</li>
         </nav>
     
       </div>
@@ -70,7 +85,8 @@ class Header extends React.Component {
 
 function mapStateToProps(state, action) {
   return {
-    chatButton: state.get('modal').get('htmlbutton')
+    chatButton: state.get('modal').get('htmlbutton'),
+    user: state.get('data').get('user').get('uid')
   }
 }
 

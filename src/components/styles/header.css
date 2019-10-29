@@ -84,8 +84,8 @@ body {
   display: block;
   text-align: center;
   line-height: 77px;
-  height: 100%;
   padding: 0 10px;
+  color: white;
   /* border: 1px solid green; */
 }
 

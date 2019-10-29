@@ -24,7 +24,7 @@ const App = () => (
         <Route exact path={process.env.PUBLIC_URL + "/privacidad"}component={SignUp} />
         <Route exact path={process.env.PUBLIC_URL + "/ayuda"} component={SignUp} />
         
-        <Route exact path={process.env.PUBLIC_URL + "/Programas"}component={Programas} />
+        <Route exact path={process.env.PUBLIC_URL + "/programas"}component={Programas} />
         <Route exact path={process.env.PUBLIC_URL + "/servicio-social"}component={ServicioSocial} />
         <Route exact path={process.env.PUBLIC_URL + "/practicas"}component={Practicas} />
         <Route exact path={process.env.PUBLIC_URL + "/ciencia"}component={Ciencia} />
