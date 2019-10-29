@@ -14,7 +14,7 @@ import Proyectos from '../pages/containers/Proyectos.jsx';
 require('dotenv').config();
 
 const App = () => (
-  <BrowserRouter >
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Layout>
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
