@@ -4,6 +4,7 @@ import ChatLayout from '../components/chat-layout.jsx';
 import ChatBotom from '../components/chatBotom.jsx';
 import { connect } from 'react-redux';
 import { obtenerFecha, obtenerHora } from '../widgets/util/date-format';
+import { Redirect } from 'react-router-dom';
 require('dotenv').config();
 
 class Chat extends React.Component {
@@ -11,6 +12,9 @@ class Chat extends React.Component {
     super() 
     this.db = firebase.firestore();
     this.db.settings({})
+    this.state = {
+      redirect: false
+    }
   }
 
   async checkAllPost() {
@@ -129,6 +133,12 @@ class Chat extends React.Component {
     });
   }
 
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to='/login' />
+  //   }
+  // }
+
   handleClick = e => {
     console.log('poner chat');
     if (this.props.authUser) {
@@ -140,10 +150,10 @@ class Chat extends React.Component {
         }
       })
     } else {
-      console.log('Debes estár autenticado para poder acceder al chat');
+      // console.log('Debes estár autenticado para poder acceder al chat');
       alert('Debes estár autenticado para poder acceder al chat');
-      // this.props.history.push(process.env.PUBLIC_URL + '/');
-      window.location.href = process.env.PUBLIC_URL + '/login';
+      console.log(this.props);
+      this.props.history.push(process.env.PUBLIC_URL + '/login');
     }
   }
 
@@ -190,6 +200,7 @@ class Chat extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return this.LoadingChat();
   }
 };
@@ -200,7 +211,7 @@ function mapStateToProps(state, props) {
     messages: state.get('data').get('messages'),
     message: state.get('data').get('message'),
     btnChat: state.get('modal').get('chatBtn'),
-    authUser: state.get('data').get('user').get('userName')
+    authUser: state.get('data').get('user').get('userName'),
   }
 }
 

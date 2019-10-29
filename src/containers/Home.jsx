@@ -105,17 +105,19 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props.user);
+    console.log('aqi....' + this.props);
+    console.log(this.props.history);
     return (
       <HomeLayout>
         <Header
           links={this.header}
+          history={this.props.history}
         />
         <SubHeader />
         <Publication />
         <About />
         <Chat
-          
+          history={this.props.history}
         />
       </HomeLayout>
     )

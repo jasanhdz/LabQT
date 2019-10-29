@@ -30,6 +30,7 @@ class Header extends React.Component {
     if (this.props.user) {
       firebase.auth().signOut()
         .then(() => {
+          console.log(this.props)
           this.props.history.push(process.env.PUBLIC_URL + '/');
         })
         .catch(error => {
@@ -37,6 +38,7 @@ class Header extends React.Component {
       })
     } else {
       alert('No haz iniciado sesión :p');
+      this.props.history.push(process.env.PUBLIC_URL + '/login');
     }
   }
 
