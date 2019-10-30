@@ -5,27 +5,19 @@ import Chat from '../../containers/Chat.jsx';
 import Footer from '../../components/About.jsx';
 import Publication from '../../containers/Publications.jsx';
 
-const  header = [
+const header = [
   {
-    title: 'Inicio',
-    link: '/'
-  },
-  {
-    title: 'Servicio Social',
+    title: 'Programas',
     link: '/servicio-social'
   },
   {
-    title: 'Prácticas Profesionales',
+    title: 'Servicios',
     link: '/practicas'
   },
   {
     title: 'Ciencia',
     link: '/ciencia'
-  },
-  {
-    title: 'Desarrollo de Proyectos',
-    link: '/proyectos'
-  },
+  },  
 ]
 
 const Proyectos = props => {

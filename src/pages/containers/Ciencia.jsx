@@ -5,27 +5,23 @@ import Chat from '../../containers/Chat.jsx';
 import Footer from '../../components/About.jsx';
 import '../../components/styles/document.css';
 
+import Menu_Before from '../../components/menu_before.jsx';
+import Help from '../../components/options/Help.jsx';
+// import Paint from '../components/options/escribir.jsx'; 
+
 const  header = [
-  {
-    title: 'Inicio',
-    link: '/'
-  },
-  {
-    title: 'Servicio Social',
-    link: '/servicio-social'
-  },
-  {
-    title: 'Prácticas Profesionales',
-    link: '/practicas'
-  },
-  {
-    title: 'Ciencia',
-    link: '/ciencia'
-  },
-  {
-    title: 'Desarrollo de Proyectos',
-    link: '/proyectos'
-  },
+    {
+      title: 'Programas',
+      link: '/servicio-social'
+    },
+    {
+      title: 'Servicios',
+      link: '/practicas'
+    },
+    {
+      title: 'Ciencia',
+      link: '/ciencia'
+    },  
 ]
 
 const Ciencia = props => {
@@ -45,7 +41,16 @@ const Ciencia = props => {
         </p>
         </div>
     <Footer />
-    <Chat />
+    <Menu_Before
+          history={props.history}
+          // refMenuBefore={this.refMenuBefore}
+        >
+        <Help />
+        {/* <Paint /> */}
+        <Chat
+          history={props.history}
+        />
+        </Menu_Before>
   </Layout>
   );
 

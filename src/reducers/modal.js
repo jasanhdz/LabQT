@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   chatVisibility: false,
   chatBtn: true,
-  htmlbutton: null,
+  htmlMenuBefore: null,
 });
 
 function modal(state = initialState, action) {
@@ -19,7 +19,7 @@ function modal(state = initialState, action) {
           chatBtn: action.payload.chatBtn
         });
     case 'REF_CHAT_BUTTON': {
-      return state.set('htmlbutton', action.payload.htmlbutton)
+      return state.set('htmlMenuBefore', action.payload.htmlMenuBefore)
     }
     default:
       return state;

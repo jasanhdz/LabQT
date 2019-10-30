@@ -15,24 +15,16 @@ class Login extends React.Component {
     this.header = [
       {
         title: 'Programas',
-        link: '/programas'
-      },
-      {
-        title: 'Servicio Social',
         link: '/servicio-social'
       },
       {
-        title: 'Prácticas Profesionales',
+        title: 'Servicios',
         link: '/practicas'
       },
       {
         title: 'Ciencia',
         link: '/ciencia'
-      },
-      {
-        title: 'Desarrollo de Proyectos',
-        link: '/proyectos'
-      },
+      },  
     ]
   }
 

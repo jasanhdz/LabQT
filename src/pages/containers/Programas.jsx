@@ -9,25 +9,17 @@ class Programas extends React.Component {
     super()
     this.header = [
       {
-        title: 'Inicio',
-        link: '/'
-      },
-      {
-        title: 'Servicio Social',
+        title: 'Programas',
         link: '/servicio-social'
       },
       {
-        title: 'Prácticas Profesionales',
+        title: 'Servicios',
         link: '/practicas'
       },
       {
         title: 'Ciencia',
         link: '/ciencia'
-      },
-      {
-        title: 'Desarrollo de Proyectos',
-        link: '/proyectos'
-      },
+      },  
     ]
   }
   render() {

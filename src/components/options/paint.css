@@ -1,4 +1,4 @@
-.Chat_Logo_Container {
+.Paint_Logo_Container {
   width: 50px;
   height: 50px;
   padding: 5px;
@@ -8,23 +8,14 @@
   justify-content: center;
   align-items: center;
   transition: .7s;
-}
-
-.Btn__chat {
-  bottom: 0;
-  right: 0;
-  color: white;
   cursor: pointer;
-  font-size: 20px;
-  box-sizing: border-box;
-  outline: 0;
-  border: none;
 }
 
-.before {
-  z-index: -1;
+.Paint {
+  width: 40px;
+  height: 40px;
 }
 
-.Chat_Logo_Container:active {
+.Paint_Logo_Container:active {
   transform: scale(.8);
 }

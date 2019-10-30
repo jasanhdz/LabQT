@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles/header.css";
 import BuapBlue from "../assets/images/buap_blue.png";
-import react from "../assets/images/react-logo.png";
+// import react from "../assets/images/react-logo.png";
+import react from "../assets/menu/fcq_logo.png";
 import { Link } from 'react-router-dom';
 import BurgerMenu from '../assets/menu/menu_white.png';
 import { connect } from "react-redux";
@@ -13,8 +14,8 @@ class Header extends React.Component {
    burgerMenuClick = e => {
     this.headerMenu.classList.toggle('active');
      this.burgerButton.classList.toggle('active');
-     if (this.props.chatButton) {
-       this.props.chatButton.classList.toggle('before');
+     if (this.props.htmlMenuBefore) {
+       this.props.htmlMenuBefore.classList.toggle('before');
      }
   }
 
@@ -26,7 +27,7 @@ class Header extends React.Component {
     this.burgerButton = e;
   }
 
-  logOut = e => {
+  signOut = e => {
     if (this.props.user) {
       firebase.auth().signOut()
         .then(() => {
@@ -40,6 +41,39 @@ class Header extends React.Component {
       alert('No haz iniciado sesión :p');
       this.props.history.push(process.env.PUBLIC_URL + '/login');
     }
+  }
+
+  signInOrSigOut() {
+    console.log()
+    if (this.props.user) {
+      return (
+        <li onClick={this.signOut}>
+          <a  href={ process.env.PUBLIC_URL + '/' }>Cerrar sesión</a>
+        </li>
+      );
+    } else {
+      return (
+        <li>
+          <Link  to={ process.env.PUBLIC_URL + '/login' }>Iniciar sesión</Link>
+        </li>
+      );
+    }
+  }
+
+  loadingLinks(link, index) {
+    return (
+      // <details>
+      //   <summary>
+      //     Installation
+      //   </summary>
+      //   <ol key={index}>
+      //     <Link to={ process.env.PUBLIC_URL + link.link } >{link.title}</Link>
+      //   </ol>
+      // </details>
+      <li key={index}>
+          <Link to={ process.env.PUBLIC_URL + link.link } >{link.title}</Link>
+      </li>
+    )
   }
 
   render() {
@@ -66,18 +100,11 @@ class Header extends React.Component {
   
         <nav ref={this.refHeaderMenu} className="menu" id="listMenu">
           {
-            this.props.links.map((link, index) => {
-              return (
-                <li key={index}>
-                  <Link to={process.env.PUBLIC_URL + link.link}>{link.title}</Link>
-                </li>
-              )
-            })
+            this.signInOrSigOut()
           }
-            <li>
-              <a href={process.env.PUBLIC_URL + "#footer"}>Más...</a>
-          </li>
-          <li onClick={this.logOut}>Logout</li>
+          {
+            this.props.links.map(this.loadingLinks)
+          }
         </nav>
     
       </div>
@@ -87,7 +114,7 @@ class Header extends React.Component {
 
 function mapStateToProps(state, action) {
   return {
-    chatButton: state.get('modal').get('htmlbutton'),
+    htmlMenuBefore: state.get('modal').get('htmlMenuBefore'),
     user: state.get('data').get('user').get('uid')
   }
 }

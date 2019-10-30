@@ -35,7 +35,7 @@ body {
   animation-timing-function: steps(30);
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
-  margin: 0 7px;
+  margin-left: 7px;
 }
 
 .active {
@@ -370,30 +370,51 @@ body {
   .Container_Message {
     height: 16%;
   }
-} */.Btn__chat {
-  position: fixed;
+} */.Chat_Logo_Container {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  background-color: #219cca;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .7s;
+}
+
+.Btn__chat {
   bottom: 0;
   right: 0;
-  width: 150px;
-  height: 40px;
-  background-color: peru;
   color: white;
   cursor: pointer;
   font-size: 20px;
-  padding: 5px;
   box-sizing: border-box;
-  transition: .7s;
   outline: 0;
   border: none;
-  margin: 5px 10px;
 }
 
 .before {
   z-index: -1;
 }
 
-.Btn__chat:active {
+.Chat_Logo_Container:active {
   transform: scale(.8);
+}.Menu__Before {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  /* border: 1px solid red; */
+  position: fixed;
+  padding: 0 30px;
+  box-sizing: border-box;
+  bottom: 0;
+  background: linear-gradient(#00885b, #000a11 ); 
+}
+
+.before {
+  z-index: -1;
 }.Title {
   text-align: center;
 }
@@ -411,6 +432,26 @@ body {
 .Content {
   text-align: justify;
   
+}.Paint_Logo_Container {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  background-color: #219cca;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .7s;
+  cursor: pointer;
+}
+
+.Paint {
+  width: 40px;
+  height: 40px;
+}
+
+.Paint_Logo_Container:active {
+  transform: scale(.8);
 }.login {
   background: linear-gradient(#00395E, #00885b); 
   /* #21C08B */
@@ -536,9 +577,10 @@ body {
 .Footer {
   display: flex;
   align-items: center;
-  height: 90px;
+  height: 93px;
   width: 100%;
   background-color: #00885b;
+  margin-bottom: 68px;
 }
 
 .Footer a {

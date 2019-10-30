@@ -162,14 +162,14 @@ class Chat extends React.Component {
     await this.checkAllPost();
   }
 
-  refChatButton = e => {
-    this.props.dispatch({
-      type: 'REF_CHAT_BUTTON',
-      payload: {
-        htmlbutton: e,
-      }
-    })
-  }
+  // refMenuBefore = e => {
+  //   this.props.dispatch({
+  //     type: 'REF_CHAT_BUTTON',
+  //     payload: {
+  //       htmlbutton: e,
+  //     }
+  //   })
+  // }
 
 
   LoadingChat() {

@@ -5,7 +5,11 @@ import About from '../components/About.jsx';
 import SubHeader from '../components/subHeader.jsx';
 import { connect } from 'react-redux';
 import Chat from './Chat.jsx';
+import Menu_Before from '../components/menu_before.jsx';
 import Publication from './Publications.jsx';
+
+import Help from '../components/options/Help.jsx';
+import Paint from '../components/options/escribir.jsx'; 
 
 class Home extends React.Component {
   constructor() {
@@ -14,25 +18,17 @@ class Home extends React.Component {
     this.db.settings({});
     this.header = [
       {
-        title: 'Inicio',
-        link: '/'
-      },
-      {
-        title: 'Servicio Social',
+        title: 'Programas',
         link: '/servicio-social'
       },
       {
-        title: 'Prácticas Profesionales',
+        title: 'Servicios',
         link: '/practicas'
       },
       {
         title: 'Ciencia',
         link: '/ciencia'
-      },
-      {
-        title: 'Desarrollo de Proyectos',
-        link: '/Más...'
-      },
+      },  
     ]
   }
 
@@ -57,22 +53,15 @@ class Home extends React.Component {
   })
   }
   
-  // Llamamos a la función Salir de sesión desde el botón SignOut que se carga al hacer Login.
-  Signout = event => {
-    const user = firebase.auth().currentUser;
-    if(user) {
-      return firebase.auth().signOut().then(() => {
-        this.setState({
-          ImgProfile: false,
-          uriProfile: null,
-          user: null
-        })
-        alert(`Salimos de la sesión correctamente!`);
-      })
-    } else {
-      alert('No tenemos niguna sesión actualmente!');
-    }
+  refMenuBefore = e => {
+    this.props.dispatch({
+      type: 'REF_CHAT_BUTTON',
+      payload: {
+        htmlMenuBefore: e,
+      }
+    })
   }
+
 
   windowListener() {
     this.consulta = window.matchMedia('(max-width: 900px)');
@@ -116,9 +105,16 @@ class Home extends React.Component {
         <SubHeader />
         <Publication />
         <About />
+        <Menu_Before
+          history={this.props.history}
+          refMenuBefore={this.refMenuBefore}
+        >
+        <Help />
+        <Paint />
         <Chat
           history={this.props.history}
         />
+        </Menu_Before>
       </HomeLayout>
     )
   }
