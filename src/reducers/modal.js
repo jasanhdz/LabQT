@@ -4,6 +4,7 @@ const initialState = fromJS({
   chatVisibility: false,
   chatBtn: true,
   htmlMenuBefore: null,
+  modalPost: false,
 });
 
 function modal(state = initialState, action) {
@@ -20,6 +21,12 @@ function modal(state = initialState, action) {
         });
     case 'REF_CHAT_BUTTON': {
       return state.set('htmlMenuBefore', action.payload.htmlMenuBefore)
+    }
+    case 'CLOSE_MODAL': {
+      return state.set('modalPost', false);
+    }
+    case 'OPEN_MODAL': {
+      return state.set('modalPost', true);
     }
     default:
       return state;

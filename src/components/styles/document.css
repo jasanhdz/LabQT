@@ -1,18 +1,19 @@
-.Title {
-  text-align: center;
-}
-
-.Document_Wrapper {
-  margin: 0;
+.Post__Container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  padding: 0 10px;
-  box-sizing: border-box;
+  border: 1px solid red;
+  width: 90%;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.Content {
-  text-align: justify;
-  
+.Wrapper__Container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  .Post__Container {
+    width: 95%;
+  }
 }

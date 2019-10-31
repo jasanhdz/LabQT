@@ -1,10 +1,51 @@
-.Post {
-  color: #126798;
+.Container__Item {
+  display: flex;
+  width: 600px;
+  height: auto;
+  flex-direction: column;
+  /* border: 1px solid yellowgreen; */
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  margin: 10px 0;
 }
 
-.PublicationMessage {
+.Item__Title {
   text-align: center;
-  color: #126798;
-  font-size: 1.5em;
+}
+
+.Item__Content {
+  text-align: justify;
+}
+
+.Item__Link {
+  text-align: center;
+  color: rgb(82, 100, 100);
   font-weight: bold;
+}
+
+.Item__Img {
+  max-width: 500px;
+  align-self: center;
+  /* width: 400px; */
+  height: auto;
+  background-size: cover;
+}
+
+.Item__Details {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1125px) {
+  .Container__Item {
+    width: 100%;
+  }
+  .Item__Img {
+    max-width: 95%;
+  }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import HelpLogo from '../../assets/menu/help.png';
+import HelpLogo from '../../assets/menu/ayuda.png';
 import './help.css';
 
 const Help = () => {
   return (
     <span>
-      <img src={HelpLogo} alt="Ayuda"/>
+      <img className="Ayuda" src={HelpLogo} alt="Ayuda"/>
     </span>
   );
 }

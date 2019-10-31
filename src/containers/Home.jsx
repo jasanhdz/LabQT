@@ -11,11 +11,15 @@ import Publication from './Publications.jsx';
 import Help from '../components/options/Help.jsx';
 import Paint from '../components/options/escribir.jsx'; 
 
+import ModalCotainer from '../widgets/containers/modal.jsx';
+import Modal from '../widgets/components/modal.jsx'
+
 class Home extends React.Component {
   constructor() {
     super();
     this.db = firebase.firestore();
     this.db.settings({});
+    this.state = {}
     this.header = [
       {
         title: 'Programas',
@@ -31,6 +35,24 @@ class Home extends React.Component {
       },  
     ]
   }
+
+  createPost(uid, uriProfile, userName, titulo, contenido, url) {
+    return this.db.collection('posts').add({ 
+      uid: uid,
+      author: userName,
+      uriProfile: uriProfile,
+      title: titulo,
+      description: contenido,
+      file: url,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+      .then(refDoc => {
+        console.log(`Id del Post => ${refDoc.id}`);
+      })
+      .catch(error => {
+        console.log(error);
+    })
+ } 
 
  async checkPostByUser(emailUser) {
   await this.db.collection('posts')
@@ -93,6 +115,53 @@ class Home extends React.Component {
     })
   }
 
+  closeModal = e => {
+    this.props.dispatch({
+      type: 'CLOSE_MODAL',
+    })
+  }
+
+  openModal = e => {
+    this.props.dispatch({
+      type: 'OPEN_MODAL'
+    })
+  }
+
+  refInputText = event => {
+    this.text = event;
+  }
+
+  refInputTextArea = event => {
+    this.textarea = event;
+  }
+
+  sendSubmit = e => {
+    e.preventDefault()
+    console.log(this.props.uriProfile)
+    if (this.text || this.textarea) {
+      console.log(this.text.value)
+      console.log(this.textarea.value)
+    }
+    
+    if (this.props.user) {
+      this.createPost(
+        this.props.user.get('uid'),
+        this.props.user.get('userName'),
+        this.props.user.get('uriProfile'),
+        this.textarea.value,
+        this.text.value,
+        "una url"
+      )
+
+      this.props.dispatch({
+        type: 'CLOSE_MODAL'
+      })
+
+    } else {
+      console.log('Debes estar autenticado');
+    }
+  }
+
   render() {
     console.log('aqi....' + this.props);
     console.log(this.props.history);
@@ -109,8 +178,22 @@ class Home extends React.Component {
           history={this.props.history}
           refMenuBefore={this.refMenuBefore}
         >
+        {
+          this.props.modalIsVisible &&
+          <ModalCotainer>
+              <Modal
+                closeModal={this.closeModal}
+                uriProfile={this.props.uriProfile}
+                refInputText={this.refInputText}
+                refInputTextArea={this.refInputTextArea}
+                sendSubmit={this.sendSubmit}
+              />
+          </ModalCotainer>
+        }
         <Help />
-        <Paint />
+        <Paint
+          openModal={this.openModal}  
+        />
         <Chat
           history={this.props.history}
         />
@@ -123,6 +206,8 @@ class Home extends React.Component {
 function mapStateToProps(state, props) {
   return {
     user: state.get('data').get('user'),
+    modalIsVisible: state.get('modal').get('modalPost'),
+    uriProfile: state.get('data').get('user').get('uriProfile')
   }
 }
 

@@ -1,138 +1,27 @@
 import React from 'react';
-import PostLayout from '../components/PostLayout.jsx';
-import { DATE_NOW } from '../widgets/util/date-format';
+import  '../components/styles/post.css'
+import Bitcoint from '../assets/bit.jpg';
 
-class Post extends React.Component {
-  constructor() {
-    super()
-    this.db = firebase.firestore();
-    const settings = {}
-    this.db.settings(settings);
-    this.state = {}
-  }
-
-
-  createPost(uid, emailUser, title, description, imageLink, videoLink) {
-    return this.db.collection('posts').add({
-      uid: uid,
-      author: emailUser,
-      title: title,
-      description: description,
-      imageLink: imageLink,
-      videoLink: videoLink,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-    .then(refDoc => {
-      console.log(`Id del post => ${refDoc.id}`)
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
-  
-  uploadPostImage(file, uid) {
-    const refStorage = firebase.storage().ref(`imgsPosts/${uid}/${file.name}_${DATE_NOW}`)
-    const task = refStorage.put(file)
-
-    task.on('state_changed', 
-    snapshot => {
-      const porcentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-      // Pasarle el porcentaje a nuestra clase de CSS para que muestre los bytes cargado
-      console.log(`${porcentage}%`);
-      this.setState({
-        style: {
-          width: `${porcentage}%`,
-          backgroundColor: 'rgb(74, 249, 100)'
-        }
-      })
-      
-    },
-    err => {
-      console.log('Ha ocurrido un error subiendo el archivo', err)
-    },
-    () => {
-      task.snapshot.ref.getDownloadURL()
-      .then(url => {
-        sessionStorage.setItem('imgNewPost', url);
-        alert('AHORA YA PUEDES PUBLICAR');
-        console.log('sessionStorage', sessionStorage.getItem('imgNewPost'));
-      }).catch(error => {
-          alert('Ha ocurrido un error obteniendo la URL del Storage', error);
-      })
-    }
-    
-    )
-
-  }
-
-  setRefLoading = e => {
-    this.inputPayloadPost = e;
-  }
-  
-  loadingFile = e => {
-    const file = e.target.files[0];
-    console.log(file);
-    const user = firebase.auth().currentUser;
-    if(user) {
-      this.uploadPostImage(file, user.uid);
-    } else {
-      alert('No puedes subir una imagen, porque no estás loggeado.');
-    }
-  }
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-    // console.log([e.target.name], e.target.value);
-  }
-
-  submitPost = async event => {
-    event.preventDefault();
-    console.log(this.state.title);
-    console.log(this.state.description);
-    console.log(this.state.linkVideo);
-    
-    
-    await this.setState({
-      imageLink: sessionStorage.getItem('imgNewPost') == 'null'
-      ? null
-      : sessionStorage.getItem('imgNewPost')
-    })
-
-    sessionStorage.setItem('imgNewPost', null);
-    console.log('sessionStorage:' ,sessionStorage.getItem('imgNewPost'));
-
-    console.log('imageLink' ,this.state.imageLink);
-
-    const user = firebase.auth().currentUser;
-    if(user) {
-      this.createPost(
-        user.uid,
-        user.email,
-        this.state.title,
-        this.state.description,
-        this.state.imageLink,
-        this.state.linkVideo,
-        
-        )
-        .then(resp => {
-          console.log('Se ha realizado correctamente el Post')
-          this.props.closeModal();
-        })
-        .catch('Error al realizar el Post');
-      } else {
-        alert('Por favor loggeate antes de publicar algó');
-      }
-
-  }
-
+class Post extends React.Component { 
   render() {
     return (
-      <PostLayout>
-      </PostLayout>
-    ); 
+      <div className="Container__Item">
+        <h1 className="Item__Title">Esté es un nuevo contenido</h1>
+        <p className="Item__Content">
+        "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+
+        </p>
+        <p className="Item__Link">Enlace o Imagen</p>
+        <img className="Item__Img" src={Bitcoint} alt="" />
+        <div className="Item__Details">
+            <p>Rogelio Lopez</p>
+            <p>25/11/2019</p>
+        </div>
+      </div>
+    );
   }
-};
+
+}
+
 
 export default Post;

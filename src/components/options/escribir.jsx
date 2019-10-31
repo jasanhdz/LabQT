@@ -2,9 +2,9 @@ import React from 'react';
 import Paint from '../../assets/menu/paint.png';
 import './paint.css'
 
-const Escribir = () => {
+const Escribir = props => {
   return (
-    <span className="Paint_Logo_Container">
+    <span onClick={props.openModal} className="Paint_Logo_Container">
       <img className="Paint" src={Paint} alt="escribir post"/>
     </span>
   );

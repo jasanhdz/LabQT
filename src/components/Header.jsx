@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles/header.css";
 import BuapBlue from "../assets/images/buap_blue.png";
-// import react from "../assets/images/react-logo.png";
 import react from "../assets/menu/fcq_logo.png";
 import { Link } from 'react-router-dom';
 import BurgerMenu from '../assets/menu/menu_white.png';
@@ -62,14 +61,6 @@ class Header extends React.Component {
 
   loadingLinks(link, index) {
     return (
-      // <details>
-      //   <summary>
-      //     Installation
-      //   </summary>
-      //   <ol key={index}>
-      //     <Link to={ process.env.PUBLIC_URL + link.link } >{link.title}</Link>
-      //   </ol>
-      // </details>
       <li key={index}>
           <Link to={ process.env.PUBLIC_URL + link.link } >{link.title}</Link>
       </li>
@@ -77,7 +68,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log('0000000000000');
     console.log(this.props.chatButton);
     return (
       <div className="header">
