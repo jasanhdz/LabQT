@@ -1,20 +1,52 @@
-.Post__Container {
+.Container__Item {
   display: flex;
-  border: 1px solid red;
+  width: 600px;
+  height: auto;
+  flex-direction: column;
+  /* border: 1px solid yellowgreen; */
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.Item__Title {
+  text-align: center;
+}
+
+.Item__Content {
+  text-align: justify;
+}
+
+.Item__Link {
+  text-align: center;
+  color: rgb(82, 100, 100);
+  font-weight: bold;
+}
+
+.Item__Img {
+  max-width: 500px;
+  align-self: center;
+  /* width: 400px; */
+  height: auto;
+  background-size: cover;
+}
+
+.Item__Details {
   width: 90%;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.Wrapper__Container {
-  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-@media screen and (max-width: 700px) {
-  .Post__Container {
-    width: 95%;
+@media screen and (max-width: 1125px) {
+  .Container__Item {
+    width: 100%;
+  }
+  .Item__Img {
+    max-width: 95%;
   }
 }body {
   margin: 0;
@@ -395,6 +427,24 @@
 
 .before {
   z-index: -1;
+}.Post__Container {
+  display: flex;
+  border: 1px solid red;
+  width: 90%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Wrapper__Container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  .Post__Container {
+    width: 95%;
+  }
 }.Menu_container {
   display: flex;
   background-color: #219cca;
@@ -431,56 +481,6 @@
 
 .SubMenu li:hover {
   background-color: #00395E;
-}.Container__Item {
-  display: flex;
-  width: 600px;
-  height: auto;
-  flex-direction: column;
-  /* border: 1px solid yellowgreen; */
-  border: none;
-  padding: 10px;
-  box-sizing: border-box;
-  align-items: center;
-  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
-  border-radius: 15px;
-  margin: 10px 0;
-}
-
-.Item__Title {
-  text-align: center;
-}
-
-.Item__Content {
-  text-align: justify;
-}
-
-.Item__Link {
-  text-align: center;
-  color: rgb(82, 100, 100);
-  font-weight: bold;
-}
-
-.Item__Img {
-  max-width: 500px;
-  align-self: center;
-  /* width: 400px; */
-  height: auto;
-  background-size: cover;
-}
-
-.Item__Details {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 1125px) {
-  .Container__Item {
-    width: 100%;
-  }
-  .Item__Img {
-    max-width: 95%;
-  }
 }.Ayuda {
   height: 60px;
   width: 60px;
@@ -630,8 +630,12 @@
   padding: 5px;
   box-sizing: border-box;
   font-size: 19px;
+  transition: .8s;
 }
 
+.Form__Container--File.uploadStyleSuccess {
+  background-color: rgb(44, 210, 22);
+}
 
 .Form__Container--Submit {
   margin-top: 20px;
@@ -654,6 +658,14 @@
     height: 100%;
     justify-content: center;
   }
+  .Wrapper__Header {
+    height: 3em;
+  }
+  .Form__Avatar {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 7px;
+  }
   .Form__Container {
     height: 80%;
     justify-content: space-around;
@@ -663,12 +675,56 @@
     width: 80%;
   }
   .Form__Container--Title {
-    font-size: 34px;
+    font-size: 28px;
   }
   .Form__Container--Description {
-    font-size: 19px;
+    font-size: 16px;
     height: 60%;
   }
+}
+
+@media screen and (max-height: 350px) {
+  .Form__Avatar {
+    margin: 0;
+    height: 45px;
+    width: 45px;
+  }
+  .Form__Container--Title {
+    font-size: 22px;
+  }
+  .Form__Container--Description {
+    height: 100px;
+  }
+}
+
+@media screen and (max-height: 300px) {
+  .Form__Container--Submit {
+    height: 30px;
+  }
+  .Form__Container--Description {
+    height: 70px;
+  }
+  .Form__Container--File {
+    font-size: 13px;
+    padding: 0;
+  }
+} .SpinnerContainer {
+    right: 0;
+    left: 0;
+    display: flex;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+    background: rgba(0,0,0,.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.Spinner_Message {
+  color: white;
+  position: absolute;
+  margin: 0;
+  text-align: center;
 }.login {
   background: linear-gradient(#00395E, #00885b); 
   /* #21C08B */

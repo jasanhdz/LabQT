@@ -162,8 +162,61 @@ class Home extends React.Component {
     }
   }
 
+  uploadPostFile(file, uid) {
+    this.refStorage = firebase.storage().ref(`imgsPosts/${uid}/${file.name}`);
+    this.task = this.refStorage.put(file)
+    this.task.on('state_changed', snapshot => {
+      this.props.dispatch({
+        type: 'IS_LOADING',
+        payload: {
+          value: true
+        }
+      });
+
+      let porcentaje = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+      // cambiar el tamaño y color con el procentaje cargado del file
+      this.props.dispatch({
+        type: 'UPLOAD_PROGRESS',
+        payload: {
+          width: `${porcentaje}%`,
+        }
+      })
+    },
+      err => {
+        console.log(`Ha ocurrido un error` + err);
+      },
+      () => {
+        this.task.snapshot.ref.getDownloadURL()
+          .then(url => {
+            this.props.dispatch({
+              type: 'IS_LOADING',
+              payload: {
+                value: false
+              }
+            });
+            console.log(url),
+            sessionStorage.setItem('imgNewPost', url)
+          })
+          .catch(err => {
+          console.log(`Error obteniendo la downloadURL => ${err}`)
+        })
+      }
+    )
+
+  }
+
+  loadingFile = e => {
+    const file = e.target.files[0];
+    console.log(file);
+    if (this.props.user) {
+      this.uploadPostFile(file, this.props.user.get('uid'))
+    } else {
+      alert('No puedes subir un archivo, porque no estás Autenticado');
+    }
+  }
+
   render() {
-    console.log('aqi....' + this.props);
+    console.log('aqi....' + this.props.isLoading);
     console.log(this.props.history);
     return (
       <HomeLayout>
@@ -187,6 +240,9 @@ class Home extends React.Component {
                 refInputText={this.refInputText}
                 refInputTextArea={this.refInputTextArea}
                 sendSubmit={this.sendSubmit}
+                ChangeLoadingFile={this.loadingFile}
+                styleLoadFilePost={this.props.uploadWidth}
+                isLoading={this.props.isLoading}
               />
           </ModalCotainer>
         }
@@ -207,7 +263,9 @@ function mapStateToProps(state, props) {
   return {
     user: state.get('data').get('user'),
     modalIsVisible: state.get('modal').get('modalPost'),
-    uriProfile: state.get('data').get('user').get('uriProfile')
+    uriProfile: state.get('data').get('user').get('uriProfile'),
+    uploadWidth: state.get('modal').get('uploadWidth'),
+    isLoading: state.get('isLoading').get('active')
   }
 }
 

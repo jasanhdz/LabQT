@@ -5,6 +5,7 @@ const initialState = fromJS({
   chatBtn: true,
   htmlMenuBefore: null,
   modalPost: false,
+  uploadWidth: 0
 });
 
 function modal(state = initialState, action) {
@@ -27,6 +28,9 @@ function modal(state = initialState, action) {
     }
     case 'OPEN_MODAL': {
       return state.set('modalPost', true);
+    }
+    case 'UPLOAD_PROGRESS': {
+      return state.set('uploadWidth', action.payload.width);
     }
     default:
       return state;

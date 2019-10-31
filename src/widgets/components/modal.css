@@ -125,8 +125,12 @@
   padding: 5px;
   box-sizing: border-box;
   font-size: 19px;
+  transition: .8s;
 }
 
+.Form__Container--File.uploadStyleSuccess {
+  background-color: rgb(44, 210, 22);
+}
 
 .Form__Container--Submit {
   margin-top: 20px;
@@ -149,6 +153,14 @@
     height: 100%;
     justify-content: center;
   }
+  .Wrapper__Header {
+    height: 3em;
+  }
+  .Form__Avatar {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 7px;
+  }
   .Form__Container {
     height: 80%;
     justify-content: space-around;
@@ -158,10 +170,37 @@
     width: 80%;
   }
   .Form__Container--Title {
-    font-size: 34px;
+    font-size: 28px;
   }
   .Form__Container--Description {
-    font-size: 19px;
+    font-size: 16px;
     height: 60%;
   }
 }
+
+@media screen and (max-height: 350px) {
+  .Form__Avatar {
+    margin: 0;
+    height: 45px;
+    width: 45px;
+  }
+  .Form__Container--Title {
+    font-size: 22px;
+  }
+  .Form__Container--Description {
+    height: 100px;
+  }
+}
+
+@media screen and (max-height: 300px) {
+  .Form__Container--Submit {
+    height: 30px;
+  }
+  .Form__Container--Description {
+    height: 70px;
+  }
+  .Form__Container--File {
+    font-size: 13px;
+    padding: 0;
+  }
+} 

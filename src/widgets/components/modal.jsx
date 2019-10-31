@@ -1,10 +1,14 @@
 import React from 'react';
 import './modal.css';
 import Avatar from '../../assets/profile-2.png';
+import LoadingSpinner from './Loading.jsx';
 
-function ModalLogin(props) {
+function Modal(props) {
   return (
     <div className="Overlay">
+        {
+          props.isLoading && <LoadingSpinner isLoading={props.isLoading}/>
+        }
       <div className="Modal">
         {/* estructura del Modal */}
         <div className="Wrapper">
@@ -23,7 +27,12 @@ function ModalLogin(props) {
               name="content"
               ref={props.refInputTextArea}
               cols="30" rows="10" />
-            <input className="Form__Container--File" type="file" />
+            <input
+              className={props.styleLoadFilePost <= 0 ? "Form__Container--File" : "Form__Container--File uploadStyleSuccess"}
+              type="file"
+              onChange={props.ChangeLoadingFile}
+              style={props.styleLoadFilePost <= 0 ? {width: "100%"} : {width: props.styleLoadFilePost}}
+            />
             <button className="Form__Container--Submit" type="submit">Publicar</button>
           </form>
         </div>
@@ -32,4 +41,4 @@ function ModalLogin(props) {
   )
 }
 
-export default ModalLogin;
+export default Modal;

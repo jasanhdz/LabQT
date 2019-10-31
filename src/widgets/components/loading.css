@@ -1,0 +1,18 @@
+.SpinnerContainer {
+    right: 0;
+    left: 0;
+    display: flex;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+    background: rgba(0,0,0,.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.Spinner_Message {
+  color: white;
+  position: absolute;
+  margin: 0;
+  text-align: center;
+}
