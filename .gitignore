@@ -125,6 +125,8 @@ typings/
 
 #React Webpack bundle
 # dist/
+public/js
+public/css
 
 # vuepress build output
 .vuepress/dist
