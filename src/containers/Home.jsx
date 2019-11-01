@@ -47,7 +47,7 @@ class Home extends React.Component {
           querySnapshot.forEach(element => {
             data.push({
               uid: element.data().uid,
-              author: element.data().uriProfile,
+              author: element.data().author,
               title: element.data().title,
               description: element.data().description,
               file: element.data().file,
@@ -136,8 +136,8 @@ class Home extends React.Component {
           type: 'LOADING_USER',
           payload: {
             userName: user.displayName,
-            email: user.email,
             uriProfile: user.photoURL,
+            email: user.email,
             emailVerified: user.emailVerified,
             uid: user.uid,
           }
@@ -181,8 +181,8 @@ class Home extends React.Component {
     if (this.props.user) {
       this.createPost(
         this.props.user.get('uid'),
-        this.props.user.get('userName'),
         this.props.user.get('uriProfile') || null,
+        this.props.user.get('userName'),
         this.text.value || null,
         this.textarea.value,
         window.sessionStorage.getItem('imgNewPost') || null
