@@ -64,7 +64,7 @@ messaging.onTokenRefresh(() => {
 
 // Recibir las notificaciones cuando el usuario esta en foreground
 messaging.onMessage(payload => {
-  alert(`Ya tenemos un nuevo post. Revisalo, se llama ${payload.data.titulo}`);
+  alert(`Ya tenemos un nuevo post. Revisalo, se llama ${payload.data.title}`);
   console.log(`${payload.data.author} ha publicado un nuevo post: ${payload.data.title}`)
   console.log(payload);
 })

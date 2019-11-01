@@ -16,8 +16,8 @@ messaging.setBackgroundMessageHandler(payload => {
   const optionesNotificatios = {
     body: `acerca de: ${payload.data.description}`,
     icon: '../src/assets/notification.png',
-    click_action: 'https://jasanhdz.github.io/LabQT/public',
-    // click_action: 'labqt-a31fa.firebaseapp.com',
+    // click_action: 'https://jasanhdz.github.io/LabQT/public',
+    click_action: 'labqt-a31fa.firebaseapp.com',
   }
 
   return self.registration.showNotification(titleNotification, optionesNotificatios)
