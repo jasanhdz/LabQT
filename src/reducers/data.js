@@ -3,7 +3,8 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   user: {},
   message: '',
-  messages: []
+  messages: [],
+  posts: []
 });
 
 function data(state = initialState, action) {
@@ -31,6 +32,9 @@ function data(state = initialState, action) {
     }
     case 'LOADING_USER': {
       return state.set('user', fromJS({ ...action.payload }));
+    }
+    case 'LOADING_POSTS': {
+      return state.set('posts', fromJS( action.payload) );
     }
     default: {
       return state;

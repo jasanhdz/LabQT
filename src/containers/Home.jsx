@@ -13,6 +13,7 @@ import Paint from '../components/options/escribir.jsx';
 
 import ModalCotainer from '../widgets/containers/modal.jsx';
 import Modal from '../widgets/components/modal.jsx'
+import { obtenerFecha, obtenerHora } from '../widgets/util/date-format.js';
 
 class Home extends React.Component {
   constructor() {
@@ -36,6 +37,35 @@ class Home extends React.Component {
     ]
   }
 
+  async checkAllPost() {
+    await this.db.collection('posts')
+      .orderBy('date', 'asc')
+      .orderBy('title', 'asc')
+      .onSnapshot(querySnapshot => {
+        if (querySnapshot) {
+          let data = [];
+          querySnapshot.forEach(element => {
+            data.push({
+              uid: element.data().uid,
+              author: element.data().uriProfile,
+              title: element.data().title,
+              description: element.data().description,
+              file: element.data().file,
+              date: obtenerFecha(element.data().date.toDate()),
+              hour: obtenerHora(element.data().date.toDate())
+            });
+          })
+          console.log(data);
+          this.props.dispatch({
+            type: 'LOADING_POSTS',
+            payload: data,
+          })
+        } else {
+          console.log('No hay Posts............... :(');
+      }
+    })
+  }
+
   createPost(uid, uriProfile, userName, titulo, contenido, url) {
     return this.db.collection('posts').add({ 
       uid: uid,
@@ -43,7 +73,7 @@ class Home extends React.Component {
       uriProfile: uriProfile,
       title: titulo,
       description: contenido,
-      file: url,
+      file: url == 'null' ? null : url,
       date: firebase.firestore.FieldValue.serverTimestamp(),
     })
       .then(refDoc => {
@@ -98,6 +128,7 @@ class Home extends React.Component {
 
   async componentDidMount() {
     this.windowListener();
+    await this.checkAllPost();
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // console.log(user.displayName);
@@ -122,9 +153,13 @@ class Home extends React.Component {
   }
 
   openModal = e => {
-    this.props.dispatch({
-      type: 'OPEN_MODAL'
-    })
+    if (this.props.user) {
+      this.props.dispatch({
+        type: 'OPEN_MODAL'
+      })
+    } else {
+      alert('Tienes que iniciar sessión si deseas publicar');
+    }
   }
 
   refInputText = event => {
@@ -147,11 +182,13 @@ class Home extends React.Component {
       this.createPost(
         this.props.user.get('uid'),
         this.props.user.get('userName'),
-        this.props.user.get('uriProfile'),
+        this.props.user.get('uriProfile') || null,
+        this.text.value || null,
         this.textarea.value,
-        this.text.value,
-        "una url"
+        window.sessionStorage.getItem('imgNewPost') || null
       )
+      
+      window.sessionStorage.setItem('imgNewPost', null);
 
       this.props.dispatch({
         type: 'CLOSE_MODAL'
@@ -246,10 +283,13 @@ class Home extends React.Component {
               />
           </ModalCotainer>
         }
-        <Help />
-        <Paint
-          openModal={this.openModal}  
-        />
+          <Help />
+          {
+            this.props.user.get('uid') &&
+            <Paint
+              openModal={this.openModal}  
+            />
+          }
         <Chat
           history={this.props.history}
         />

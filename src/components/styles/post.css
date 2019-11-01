@@ -25,14 +25,15 @@
   text-align: center;
   color: rgb(82, 100, 100);
   font-weight: bold;
+  margin: 10px;
 }
 
 .Item__Img {
-  max-width: 500px;
+  max-width: 100%;
+  /* height: 50%; */
   align-self: center;
-  /* width: 400px; */
-  height: auto;
   background-size: cover;
+  display: none;
 }
 
 .Item__Details {
@@ -46,6 +47,10 @@
     width: 100%;
   }
   .Item__Img {
+    display: initial;
     max-width: 95%;
+  }
+  .Item__Details {
+    font-size: .8em;
   }
 }

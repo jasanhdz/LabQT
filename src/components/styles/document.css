@@ -1,6 +1,5 @@
 .Post__Container {
   display: flex;
-  border: 1px solid red;
   width: 90%;
   justify-content: space-around;
   flex-wrap: wrap;

@@ -17,7 +17,7 @@ class Chat extends React.Component {
     }
   }
 
-  async checkAllPost() {
+  async checkAllMessages() {
     await this.db.collection('messages')
     .orderBy('date', 'asc')
     .onSnapshot(querySnapshot => {
@@ -44,7 +44,7 @@ class Chat extends React.Component {
         this.containerMessages.scrollTop = this.containerMessages.scrollHeight;
       }
      } else {
-       console.log('No hay Posts............... :(');
+       console.log('No hay Mensajes............... :(');
      }
    })
  }
@@ -90,8 +90,6 @@ class Chat extends React.Component {
       console.log(this.containerMessages.scrollHeight || 0);
       this.containerMessages.scrollTop = this.containerMessages.scrollHeight;
     }
-    // if (this.containerMessages.scrollTop !== null && this.containerMessages.scrollHeight !== null) {
-    // }
   }
 
   handleSubmit = (e) => {
@@ -133,11 +131,6 @@ class Chat extends React.Component {
     });
   }
 
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to='/login' />
-  //   }
-  // }
 
   handleClick = e => {
     console.log('poner chat');
@@ -150,7 +143,6 @@ class Chat extends React.Component {
         }
       })
     } else {
-      // console.log('Debes estár autenticado para poder acceder al chat');
       alert('Debes estár autenticado para poder acceder al chat');
       console.log(this.props);
       this.props.history.push(process.env.PUBLIC_URL + '/login');
@@ -159,18 +151,8 @@ class Chat extends React.Component {
 
 
   async componentDidMount() {
-    await this.checkAllPost();
+    await this.checkAllMessages();
   }
-
-  // refMenuBefore = e => {
-  //   this.props.dispatch({
-  //     type: 'REF_CHAT_BUTTON',
-  //     payload: {
-  //       htmlbutton: e,
-  //     }
-  //   })
-  // }
-
 
   LoadingChat() {
     // console.log(`Es aqui bro -> ${this.props.authUser}`);

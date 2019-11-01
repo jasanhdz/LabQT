@@ -26,6 +26,7 @@ function Modal(props) {
               placeholder="¿Qué estas pensando?"
               name="content"
               ref={props.refInputTextArea}
+              required
               cols="30" rows="10" />
             <input
               className={props.styleLoadFilePost <= 0 ? "Form__Container--File" : "Form__Container--File uploadStyleSuccess"}
