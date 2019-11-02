@@ -13,6 +13,7 @@ exports.registrarTopico = functions.firestore
     return admin
       .messaging()
       .subscribeToTopic(registrationTokens, 'NuevosPosts')
+      .subscribeToTopic(registrationTokens, 'NuevosMensajes')
       .then(() => {
         return console.log(`Adiciona correctamente al topico`)
       })
@@ -30,6 +31,7 @@ exports.enviarNotificacion = functions.firestore
 
     const mensaje = {
       data: {
+        type: "POST",
         author: author,
         title: title,
         description: description
@@ -47,3 +49,30 @@ exports.enviarNotificacion = functions.firestore
         console.error(`Error enviando mensaje => ${error}`)
       })
   })
+
+
+exports.enviarNotificationMessages = functions.firestore
+  .document('/messages/{idMessage}')
+  .onCreate(dataSnapshot => {
+    const author = dataSnapshot.data().author
+    const message = dataSnapshot.data().message
+
+    const mensaje = {
+      data: {
+        type: "MESSAGE",
+        author: author,
+        title: "Nuevo Mensaje",
+        description: message
+      },
+      topic: 'NuevosMensajes'
+    }
+    return admin
+      .messaging()
+      .send(mensaje)
+      .then(() => {
+      return console.log(`Mensaje enviado correctamente`)
+      })
+      .catch(error => {
+      console.log(`Error enviando mensaje => ${error}`)
+    })
+})
