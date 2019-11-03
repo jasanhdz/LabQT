@@ -46,6 +46,7 @@ class Home extends React.Component {
           let data = [];
           querySnapshot.forEach(element => {
             data.push({
+              id: element.id,
               uid: element.data().uid,
               author: element.data().author,
               title: element.data().title,
@@ -252,6 +253,15 @@ class Home extends React.Component {
     }
   }
 
+  deletePost(documentID) {
+    return this.db.collection('posts').doc(documentID).delete()
+      .then(() => {
+        console.log('Docuemento eliminado satisfactoriamente :p');
+      }).catch(error => {
+        console.log('Error removiendo el docuemento' + error);
+    })
+  }
+
   render() {
     console.log('aqi....' + this.props.isLoading);
     console.log(this.props.history);
@@ -262,7 +272,9 @@ class Home extends React.Component {
           history={this.props.history}
         />
         <SubHeader />
-        <Publication />
+        <Publication
+          deletePost={this.deletePost}
+        />
         <About />
         <Menu_Before
           history={this.props.history}

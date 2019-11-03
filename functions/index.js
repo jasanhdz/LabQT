@@ -12,7 +12,7 @@ exports.registrarTopico = functions.firestore
 
     return admin
       .messaging()
-      .subscribeToTopic(registrationTokens, 'NuevosPosts')
+      // .subscribeToTopic(registrationTokens, 'NuevosPosts')
       .subscribeToTopic(registrationTokens, 'NuevosMensajes')
       .then(() => {
         return console.log(`Adiciona correctamente al topico`)

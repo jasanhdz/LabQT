@@ -4,13 +4,18 @@ import Post from './Post.jsx'
 import { connect } from 'react-redux';
 
 class Publication extends React.Component {
-
+  // deletePost = id => {
+  //   return () => {
+  //     console.log(id)
+  //   }
+  // }
   render() {
     return (
         <div className="Wrapper__Container">
           <div className="Post__Container">
           <Post
             posts={this.props.postList}
+            deletePost={this.props.deletePost}
           />
           </div>
         </div>

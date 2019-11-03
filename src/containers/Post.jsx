@@ -1,10 +1,26 @@
 import React from 'react';
-import  '../components/styles/post.css'
-
-
+import '../components/styles/post.css';
 
 const validationPost = (post, index) => {
-  console.log(post);
+
+  const db = firebase.firestore();
+  db.settings({});
+
+const deleteDocument = documentID => {
+  return db.collection('posts').doc(documentID).delete()
+    .then(() => {
+      console.log('Docuemento eliminado satisfactoriamente :p');
+    }).catch(error => {
+      console.log('Error removiendo el docuemento' + error);
+  })
+}
+
+  const deletePost = id => {
+    return () => {
+      console.log(id)
+      deleteDocument(id)
+    }
+  }
   if (post.get('file') !== null) {
       // Si existe algún archivo
     if (post.get('title') && post.get('file').includes('.jpg') || post.get('file').includes('.png')) {
@@ -50,6 +66,7 @@ const validationPost = (post, index) => {
     else if (post.get('file') === null) {
       return (
         <div key={index} className="Container__Item">
+          <button onClick={ deletePost( post.get('id') ) }>Eliminar</button>
           <h1 className="Item__Title">{post.get('title')}</h1>
           <p className="Item__Content">{post.get('description')}</p>
           <div className="Item__Details">
@@ -60,11 +77,10 @@ const validationPost = (post, index) => {
       );
     }
 }
-  
 
 const Post = props => {
   console.log(props.posts)
-  return props.posts.map(validationPost)
+  return props.posts.map(validationPost, props.deletePost)
 }  
 
 
