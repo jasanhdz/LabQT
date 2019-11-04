@@ -1,15 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../components/styles/post.css'; 
 
-const validationPost = (post, index) => {
-  console.log(post.get('deletePost'));
-  if (post.get('file') !== null) {
+const deletePost = (id) => {
+  return () => {
+    console.log(id)
+  }
+}
+
+class PostContainer extends React.Component {
+  
+  validationPost(post, index) {
+    console.log(deletePost)
+    if (post.get('file') !== null) {
       // Si existe algún archivo
     if (post.get('title') && post.get('file').includes('.jpg') || post.get('file').includes('.png')) {
           // Renderea Solo imagenes
             return (
               <div key={index} className="Container__Item">
-                <button onClick={ post.get('deletePost') }>Eliminar</button>
                 <h1 className="Item__Title">{post.get('title')}</h1>
                 <p className="Item__Content">{post.get('description')}</p>
                 <a className="Item__Link" target="_blank" href={post.get('file')}>Descargar Archivo</a>
@@ -24,7 +32,6 @@ const validationPost = (post, index) => {
         // Renderear Cualquier Tipo de Archivo que no sea una imagen.
         return (
           <div key={index} className="Container__Item">
-            <button onClick={ post.get('deletePost') }>Eliminar</button>
             <h1 className="Item__Title">{post.get('title')}</h1>
             <p className="Item__Content">{post.get('description')}</p>
             <a className="Item__Link" target="_blank" href={post.get('file')}>Descargar Archivo</a>
@@ -39,7 +46,6 @@ const validationPost = (post, index) => {
       // Solo Descripción 
         return (
           <div key={index} className="Container__Item">
-          <button onClick={ post.get('deletePost') }>Eliminar</button>
           <p className="Item__Content">{post.get('description')}</p>
           <div className="Item__Details">
             <p>{post.get('author')}</p>
@@ -51,7 +57,7 @@ const validationPost = (post, index) => {
     else if (post.get('file') === null) {
       return (
         <div key={index} className="Container__Item">
-          <button onClick={ post.get('deletePost') }>Eliminar</button>
+          {/* <button onClick={ deletePost( post.get('id') ) }>Eliminar</button> */}
           <h1 className="Item__Title">{post.get('title')}</h1>
           <p className="Item__Content">{post.get('description')}</p>
           <div className="Item__Details">
@@ -61,30 +67,11 @@ const validationPost = (post, index) => {
         </div>
       );
     }
-}
+  }
+  render() {
+    console.log(this.deletePost)
+    return this.props.posts.map(this.validationPost(post, index))
+  }
+};
 
-const Post = props => {
-  return props.posts.map(validationPost)
-}  
-
-
-export default Post;
-
-//   const db = firebase.firestore();
-//   db.settings({});
-
-// const deleteDocument = documentID => {
-//   return db.collection('posts').doc(documentID).delete()
-//     .then(() => {
-//       console.log('Docuemento eliminado satisfactoriamente :p');
-//     }).catch(error => {
-//       console.log('Error removiendo el docuemento' + error);
-//   })
-// }
-
-  // const deletePost = id => {
-  //   return () => {
-  //     console.log(id)
-  //     // deleteDocument(id)
-  //   }
-  // }
+export default connect()(PostContainer);

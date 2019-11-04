@@ -13,6 +13,7 @@ import Paint from '../components/options/escribir.jsx';
 
 import ModalCotainer from '../widgets/containers/modal.jsx';
 import Modal from '../widgets/components/modal.jsx'
+import ModalDelete from '../widgets/components/modalDelete.jsx';
 import { obtenerFecha, obtenerHora } from '../widgets/util/date-format.js';
 
 class Home extends React.Component {
@@ -53,7 +54,15 @@ class Home extends React.Component {
               description: element.data().description,
               file: element.data().file,
               date: obtenerFecha(element.data().date.toDate()),
-              hour: obtenerHora(element.data().date.toDate())
+              hour: obtenerHora(element.data().date.toDate()),
+              deletePost: () => {
+                this.props.dispatch({
+                  type: 'DELETE_POST',
+                  payload: {
+                    id: element.id
+                  }
+                })
+              }
             });
           })
           console.log(data);
@@ -253,12 +262,21 @@ class Home extends React.Component {
     }
   }
 
-  deletePost(documentID) {
-    return this.db.collection('posts').doc(documentID).delete()
+  deletePost = () => {
+    return this.db.collection('posts').doc(this.props.deleteId).delete()
       .then(() => {
-        console.log('Docuemento eliminado satisfactoriamente :p');
+        this.props.dispatch({
+          type: "CLOSE_MODAL_DELETE_POST"
+        })
+        console.log('Documento eliminado satisfactoriamente :p');
       }).catch(error => {
         console.log('Error removiendo el docuemento' + error);
+    })
+  }
+
+  cancelDeletePost = e => {
+    this.props.dispatch({
+      type: "CLOSE_MODAL_DELETE_POST"
     })
   }
 
@@ -294,7 +312,16 @@ class Home extends React.Component {
                 isLoading={this.props.isLoading}
               />
           </ModalCotainer>
-        }
+          }
+          {
+            this.props.modalDeletePost &&
+            <ModalCotainer>
+              <ModalDelete
+                deletePost={this.deletePost}
+                cancel={this.cancelDeletePost}
+              />
+            </ModalCotainer>
+          }
           <Help />
           {
             this.props.user.get('uid') &&
@@ -317,7 +344,9 @@ function mapStateToProps(state, props) {
     modalIsVisible: state.get('modal').get('modalPost'),
     uriProfile: state.get('data').get('user').get('uriProfile'),
     uploadWidth: state.get('modal').get('uploadWidth'),
-    isLoading: state.get('isLoading').get('active')
+    isLoading: state.get('isLoading').get('active'),
+    modalDeletePost: state.get('data').get('isVisibility'),
+    deleteId: state.get('data').get('id')
   }
 }
 
