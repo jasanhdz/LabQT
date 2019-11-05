@@ -40,6 +40,46 @@ class Home extends React.Component {
 
   async checkAllPost() {
     await this.db.collection('posts')
+      .orderBy('date', 'desc')
+      .orderBy('title', 'asc')
+      .onSnapshot(querySnapshot => {
+        if (querySnapshot) {
+          let data = [];
+          querySnapshot.forEach(element => {
+            data.push({
+              id: element.id,
+              uid: element.data().uid,
+              author: element.data().author,
+              title: element.data().title,
+              description: element.data().description,
+              file: element.data().file,
+              date: obtenerFecha(element.data().date.toDate()),
+              hour: obtenerHora(element.data().date.toDate()),
+              authorPost: element.data().uid === this.props.user.get('uid'),
+              deletePost: () => {
+                this.props.dispatch({
+                  type: 'DELETE_POST',
+                  payload: {
+                    id: element.id,
+                    userUid: element.data().uid,
+                  }
+                })
+              }
+            });
+          })
+          console.log(data);
+          this.props.dispatch({
+            type: 'LOADING_POSTS',
+            payload: data,
+          })
+        } else {
+          console.log('No hay Posts............... :(');
+      }
+    })
+  }
+
+  async loadOldPost() {
+    await this.db.collection('posts')
       .orderBy('date', 'asc')
       .orderBy('title', 'asc')
       .onSnapshot(querySnapshot => {
@@ -55,11 +95,13 @@ class Home extends React.Component {
               file: element.data().file,
               date: obtenerFecha(element.data().date.toDate()),
               hour: obtenerHora(element.data().date.toDate()),
+              authorPost: element.data().uid === this.props.user.get('uid'),
               deletePost: () => {
                 this.props.dispatch({
                   type: 'DELETE_POST',
                   payload: {
-                    id: element.id
+                    id: element.id,
+                    userUid: element.data().uid,
                   }
                 })
               }
@@ -67,7 +109,7 @@ class Home extends React.Component {
           })
           console.log(data);
           this.props.dispatch({
-            type: 'LOADING_POSTS',
+            type: 'LOADING_OLD_POSTS',
             payload: data,
           })
         } else {
@@ -263,21 +305,33 @@ class Home extends React.Component {
   }
 
   deletePost = () => {
-    return this.db.collection('posts').doc(this.props.deleteId).delete()
-      .then(() => {
-        this.props.dispatch({
-          type: "CLOSE_MODAL_DELETE_POST"
-        })
-        console.log('Documento eliminado satisfactoriamente :p');
-      }).catch(error => {
-        console.log('Error removiendo el docuemento' + error);
-    })
+    if (this.props.user.get('uid') === this.props.postUserId) {
+      return this.db.collection('posts').doc(this.props.deleteId).delete()
+        .then(() => {
+          this.props.dispatch({
+            type: "CLOSE_MODAL_DELETE_POST"
+          })
+          console.log('Documento eliminado satisfactoriamente :p');
+        }).catch(error => {
+          console.log('Error removiendo el docuemento' + error);
+      })
+    } else {
+      console.log('Solo el author puede eliminar esté post');
+    }
   }
 
   cancelDeletePost = e => {
     this.props.dispatch({
       type: "CLOSE_MODAL_DELETE_POST"
     })
+  }
+
+  previousPosts = async e => {
+    await this.checkAllPost()
+  }
+
+  oldPost = async e => {
+    await this.loadOldPost()
   }
 
   render() {
@@ -289,7 +343,10 @@ class Home extends React.Component {
           links={this.header}
           history={this.props.history}
         />
-        <SubHeader />
+        <SubHeader
+          previousPosts={this.previousPosts}
+          oldPost={this.oldPost}
+        />
         <Publication
           deletePost={this.deletePost}
         />
@@ -346,7 +403,8 @@ function mapStateToProps(state, props) {
     uploadWidth: state.get('modal').get('uploadWidth'),
     isLoading: state.get('isLoading').get('active'),
     modalDeletePost: state.get('data').get('isVisibility'),
-    deleteId: state.get('data').get('id')
+    deleteId: state.get('data').get('id'),
+    postUserId: state.get('data').get('userUid')
   }
 }
 

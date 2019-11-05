@@ -5,8 +5,9 @@ const initialState = fromJS({
   message: '',
   messages: [],
   posts: [],
-  isVisibility: true,
+  isVisibility: false,
   id: null,
+  userUid: null
 });
 
 function data(state = initialState, action) {
@@ -38,10 +39,14 @@ function data(state = initialState, action) {
     case 'LOADING_POSTS': {
       return state.set('posts', fromJS( action.payload) );
     }
+    case 'LOADING_OLD_POSTS': {
+      return state.set('posts', fromJS( action.payload) );
+    }
     case 'DELETE_POST': {
       return state.merge(fromJS({
         isVisibility: true,
         id: action.payload.id,
+        userUid: action.payload.userUid
       }))
     }
     case 'CLOSE_MODAL_DELETE_POST': {

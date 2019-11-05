@@ -5,8 +5,8 @@ const subHeader = props => {
   return (
     <div className="Menu_container">
       <ul className="SubMenu">
-        <li>Todos los post</li>
-        <li>Ultimas noticias</li>
+        <li onClick={props.oldPost}>Publicaciones Anteriores</li>
+        <li onClick={props.previousPosts}>Ultimas noticias</li>
         <div>
         </div>
       </ul>

@@ -13,6 +13,24 @@
   margin: 10px 0;
 }
 
+.DeleteBTN__Container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: -44px;
+}
+
+.Delete__Btn {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.Delete__Btn:hover, .Delete__Btn:active {
+  background-color: red;
+}
+
 .Item__Title {
   text-align: center;
 }
