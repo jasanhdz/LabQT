@@ -14,7 +14,7 @@ const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(payload => {
   const optionesNotificatios = {
     body: `acerca de: ${payload.data.description}`,
-    icon: './css/notification.png',
+    icon: payload.data.type === "POST" ? './css/notification.png' : "./css/message.png",
     // click_action: 'https://jasanhdz.github.io/LabQT/public',
     click_action: 'labqt-a31fa.firebaseapp.com',
   }
@@ -32,5 +32,4 @@ messaging.setBackgroundMessageHandler(payload => {
       return self.registration.showNotification(titleNotification, optionesNotificatios)
     }
   }
-  return self.registration.showNotification(titleNotification, optionesNotificatios)
 })

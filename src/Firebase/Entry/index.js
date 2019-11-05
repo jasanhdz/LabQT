@@ -27,7 +27,7 @@ navigator.serviceWorker
 const messaging = firebase.messaging()
 
 messaging.usePublicVapidKey( 
-  `BNihLr4hdIX4EZZxLNVaTd-3PCY-VhWkNjRboMriB1CYbmKQTA8lFhb7cWYuBVqO4IBEhhHyX3jXY6uV_qkMff8`
+  `BETzP8fVvKoeiKNPuKZUAlaeEjhRZNHU2yt2DOupzeVH_UHxB5L59jI0uHaf4EChODM9kk8fzDuUctC2m3IKE5Y`
 );
 
 // Solicitar permisos para las notificaciones

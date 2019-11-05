@@ -12,7 +12,7 @@ exports.registrarTopico = functions.firestore
 
     return admin
       .messaging()
-      // .subscribeToTopic(registrationTokens, 'NuevosPosts')
+      .subscribeToTopic(registrationTokens, 'NuevosPosts')
       .subscribeToTopic(registrationTokens, 'NuevosMensajes')
       .then(() => {
         return console.log(`Adiciona correctamente al topico`)
@@ -51,7 +51,7 @@ exports.enviarNotificacion = functions.firestore
   })
 
 
-exports.enviarNotificationMessages = functions.firestore
+exports.MessagesNotification = functions.firestore
   .document('/messages/{idMessage}')
   .onCreate(dataSnapshot => {
     const author = dataSnapshot.data().author
