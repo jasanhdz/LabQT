@@ -13,6 +13,23 @@ exports.registrarTopico = functions.firestore
     return admin
       .messaging()
       .subscribeToTopic(registrationTokens, 'NuevosPosts')
+      .then(() => {
+        return console.log(`Adiciona correctamente al topico`)
+      })
+      .catch(error => {
+        console.error(`Error registrando al topico el token => ${error}`)
+      })
+  })
+
+exports.TopicoMessage = functions.firestore
+  .document('/tokens/{id}')
+  .onCreate(dataSnapshot => {
+    const token = dataSnapshot.data().token
+
+    const registrationTokens = [token]
+
+    return admin
+      .messaging()
       .subscribeToTopic(registrationTokens, 'NuevosMensajes')
       .then(() => {
         return console.log(`Adiciona correctamente al topico`)

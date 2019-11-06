@@ -100,7 +100,7 @@ module.exports = (env) => {
           use: {
             loader: 'url-loader',
             options: {
-              limit: 10000000,
+              limit: 100000,
               name: 'images/[name].[hash].[ext]'
             }
           }
