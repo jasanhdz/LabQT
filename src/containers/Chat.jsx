@@ -152,6 +152,21 @@ class Chat extends React.Component {
 
   async componentDidMount() {
     await this.checkAllMessages();
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // console.log(user.displayName);
+        this.props.dispatch({
+          type: 'LOADING_USER',
+          payload: {
+            userName: user.displayName,
+            uriProfile: user.photoURL,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            uid: user.uid,
+          }
+        });
+      }
+    })
   }
 
   LoadingChat() {

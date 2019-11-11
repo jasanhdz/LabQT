@@ -70,17 +70,30 @@ messaging.onTokenRefresh(() => {
   });
 });
 
+
+const $message = document.getElementById('message');
+
 // Recibir las notificaciones cuando el usuario esta en foreground
 messaging.onMessage(payload => {
   switch (payload.data.type) {
     case 'POST': {
-      alert(`Ya tenemos un nuevo post. Revisalo, se llama ${payload.data.title}`);
+      $message.textContent = `Ya tenemos un nuevo post. Revisalo, se llama ${payload.data.title}`
+      $message.classList.add('msgActive');
+      setTimeout(() => {
+        $message.classList.remove('msgActive');
+      }, 5000)
+      // alert(`Ya tenemos un nuevo post. Revisalo, se llama ${payload.data.title}`);
       console.log(`${payload.data.author} ha publicado un nuevo post: ${payload.data.title}`)
       console.log(payload);
       break;
     }
     case 'MESSAGE': {
-      alert(`${payload.data.title}: ${payload.data.author} ha escrito un ${payload.data.description} `);
+      console.log('Entramos');
+      $message.textContent = `${payload.data.title}: ${payload.data.author} ha escrito un ${payload.data.description}`
+      $message.classList.add('msgActive');
+      setTimeout(() => {
+        $message.classList.remove('msgActive');
+      }, 5000)
       console.log(`${payload.data.title}: ${payload.data.author} ha escrito ${payload.data.description} `);
       console.log(payload);
       break;

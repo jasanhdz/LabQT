@@ -19,7 +19,9 @@ messaging.setBackgroundMessageHandler(payload => {
       optionesNotificatios = {
         body: `acerca de: ${payload.data.description}`,
         icon: "./css/notification.png",
-        click_action: 'labqt-a31fa.firebaseapp.com',
+        click_action: 'https://labqt-a31fa.firebaseapp.com',
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: 'vibration-sample'
       }
       return self.registration.showNotification(titleNotification, optionesNotificatios)
 
@@ -29,7 +31,9 @@ messaging.setBackgroundMessageHandler(payload => {
       optionesNotificatios = {
         body: `acerca de: ${payload.data.description}`,
         icon: "./css/message.png",
-        click_action: 'labqt-a31fa.firebaseapp.com',
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: 'vibration-sample',
+        click_action: 'https://labqt-a31fa.firebaseapp.com',
       }
       return self.registration.showNotification(titleNotification, optionesNotificatios)
     }

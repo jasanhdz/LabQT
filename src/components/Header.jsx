@@ -67,13 +67,21 @@ class Header extends React.Component {
     )
   }
 
+  HomeRedirect = e => {
+    console.log(e);
+    console.log('home');
+    this.props.history
+      ? this.props.history.push(process.env.PUBLIC_URL + '/')
+      : window.location.href = '/';
+  }
+
   render() {
     console.log(this.props.chatButton);
     return (
       <div className="header">
   
-        <div className="Logos">
-          <img className="BuapLogo" src={BuapBlue} alt="" set="" />
+        <div className="Logos"  onClick={this.HomeRedirect}>
+          <img className="BuapLogo" src={BuapBlue}/>
           
           <div className="Content__QT">
             <img src={react} alt="" className="React"/>
@@ -90,10 +98,10 @@ class Header extends React.Component {
   
         <nav ref={this.refHeaderMenu} className="menu" id="listMenu">
           {
-            this.signInOrSigOut()
+            this.props.links.map(this.loadingLinks)
           }
           {
-            this.props.links.map(this.loadingLinks)
+            this.signInOrSigOut()
           }
         </nav>
     

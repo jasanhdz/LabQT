@@ -20,12 +20,9 @@ const App = () => (
         <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
         <Route exact path={process.env.PUBLIC_URL + "/login"} component={Login}/>
         <Route exact path={process.env.PUBLIC_URL + "/register"}component={SignUp} />
-        <Route exact path={process.env.PUBLIC_URL + "/uso"}component={SignUp} />
-        <Route exact path={process.env.PUBLIC_URL + "/privacidad"}component={SignUp} />
-        <Route exact path={process.env.PUBLIC_URL + "/ayuda"} component={SignUp} />
         
         <Route exact path={process.env.PUBLIC_URL + "/programas"}component={Programas} />
-        <Route exact path={process.env.PUBLIC_URL + "/servicio-social"}component={ServicioSocial} />
+        <Route exact path={process.env.PUBLIC_URL + "/servicios"}component={ServicioSocial} />
         <Route exact path={process.env.PUBLIC_URL + "/practicas"}component={Practicas} />
         <Route exact path={process.env.PUBLIC_URL + "/ciencia"}component={Ciencia} />
         <Route exact path={process.env.PUBLIC_URL + "/proyectos"}component={Proyectos} />

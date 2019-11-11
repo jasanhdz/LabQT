@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../../components/Layout.jsx';
 import Header from '../../components/Header.jsx';
 import Chat from '../../containers/Chat.jsx';
-import Footer from '../../components/About.jsx';
+import Footer from '../../components/Footer.jsx';
 import '../../components/styles/document.css';
 
 import Menu_Before from '../../components/menu_before.jsx';
@@ -11,16 +11,16 @@ import Help from '../../components/options/Help.jsx';
 
 const  header = [
     {
-      title: 'Programas',
-      link: '/servicio-social'
+      title: 'Inicio',
+      link: '/'
     },
     {
       title: 'Servicios',
-      link: '/practicas'
+      link: '/servicios'
     },
     {
-      title: 'Ciencia',
-      link: '/ciencia'
+      title: 'Programas',
+      link: '/programas'
     },  
 ]
 
@@ -30,16 +30,28 @@ const Ciencia = props => {
     <Header
         links={header}
     />
-     <div className="Document_Wrapper">
-        <h1 className="Title">Publicaciones</h1>
-        <p className="Content">
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-        </p>
-        <h1 className="Title">Ciencia</h1>
-        <p className="Content">
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-        </p>
+      <div className="Document_Wrapper">
+        <h2 className="center">Ciencia</h2>
+        <div className="Ciencia_img_container">
+          <a href="http://www.lacienciaparatodos.mx/" target="_blank">
+            <img src="https://firebasestorage.googleapis.com/v0/b/labqt-a31fa.appspot.com/o/Programas%2Fmartesenlaciencia-2019.png?alt=media&token=822adebc-669f-4944-b749-76317dcdbf20" alt=""/>
+          </a>
+          <a target="_blank" href="https://firebasestorage.googleapis.com/v0/b/labqt-a31fa.appspot.com/o/Programas%2Fciencia.pdf?alt=media&token=42b07805-f204-48a3-bcff-6cb3dbb76659">
+            <img src="https://firebasestorage.googleapis.com/v0/b/labqt-a31fa.appspot.com/o/Programas%2Fanuncio-divulgacion-leamosxvi.png?alt=media&token=297da151-01b2-4131-b9fa-1dacd42dc8ad" alt=""/>
+          </a>
         </div>
+        <details open className="Details">
+        <summary>
+        XVI Concurso Leamos la Ciencia para Todos 2018-2020 - Fondo de Cultura Económica
+        </summary>
+          <h3>Dirección General de Divulgación Científica</h3>
+          <iframe 
+              src="https://firebasestorage.googleapis.com/v0/b/labqt-a31fa.appspot.com/o/Programas%2Fciencia.pdf?alt=media&token=42b07805-f204-48a3-bcff-6cb3dbb76659"
+              className="Document"
+             />
+        </details>
+        
+    </div>
     <Footer />
     <Menu_Before
           history={props.history}

@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeLayout from '../components/home-layout.jsx';
 import Header from '../components/Header.jsx';
-import About from '../components/About.jsx';
+import About from '../components/Footer.jsx';
 import SubHeader from '../components/subHeader.jsx';
 import { connect } from 'react-redux';
 import Chat from './Chat.jsx';
@@ -21,15 +21,14 @@ class Home extends React.Component {
     super();
     this.db = firebase.firestore();
     this.db.settings({});
-    this.state = {}
     this.header = [
       {
         title: 'Programas',
-        link: '/servicio-social'
+        link: '/programas'
       },
       {
         title: 'Servicios',
-        link: '/practicas'
+        link: '/servicios'
       },
       {
         title: 'Ciencia',

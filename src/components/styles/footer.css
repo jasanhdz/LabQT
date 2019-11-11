@@ -3,8 +3,10 @@
   background-color: #00885b;
   display: flex;
   justify-content: space-evenly;
+  /* flex-direction: column; */
   color: white;
   height: auto;
+  padding-bottom: 40px;
 }
 
 .Footer_container {
@@ -30,16 +32,18 @@
 }
 
 .item {
-  max-width: 300px;
+  /* max-width: 300px; */
 }
 
 .logos {
   display: inherit;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 .logos p {
-  font-size: .9em;
+  font-size: 1.3em;
 }
 .information {
   display: inherit;
@@ -80,10 +84,14 @@
   background: linear-gradient(to left, #fe344e, #ff7250);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
   .form {
     justify-content: center;
     align-items: center;
+  }
+  .logos {
+    font-size: .8em;
+    text-align: center;
   }
 }
 

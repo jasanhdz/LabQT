@@ -1,9 +1,12 @@
 import React from 'react';
 import Layout from '../../components/Layout.jsx';
 import Header from '../../components/Header.jsx';
-import Chat from '../../containers/Chat.jsx';
-import Footer from '../../components/About.jsx';
+import Footer from '../../components/Footer.jsx';
 import Publication from '../../containers/Publications.jsx';
+
+import Menu_Before from '../../components/menu_before.jsx';
+import Help from '../../components/options/Help.jsx';
+import Chat from '../../containers/Chat.jsx';
 
 const header = [
   {
@@ -12,7 +15,7 @@ const header = [
   },
   {
     title: 'Servicios',
-    link: '/practicas'
+    link: '/servicios'
   },
   {
     title: 'Ciencia',
@@ -28,7 +31,16 @@ const Practicas = props => {
     />
     <Publication />
     <Footer />
-    <Chat />
+    <Menu_Before
+          history={props.history}
+          // refMenuBefore={this.refMenuBefore}
+        >
+        <Help />
+        {/* <Paint /> */}
+        <Chat
+          history={props.history}
+        />
+      </Menu_Before>
   </Layout>
   );
 

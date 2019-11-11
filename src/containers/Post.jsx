@@ -6,18 +6,17 @@ const validationPost = (post, index) => {
   console.log(post.get('deletePost'));
   if (post.get('file') !== null) {
       // Si existe algún archivo
-    if (post.get('title') && post.get('file').includes('.jpg') || post.get('file').includes('.png')) {
+    if (!post.get('title') || post.get('file').includes('.jpg') || post.get('file').includes('.png')) {
           // Renderea Solo imagenes
             return (
               <div key={index} className="Container__Item">
-                {/* <button onClick={post.get('deletePost')}>Eliminar</button> */}
                 {
                   post.get('authorPost') &&
                     <div className="DeleteBTN__Container">
                       <img onClick={post.get('deletePost')} className="Delete__Btn" src={Delete} alt=""/>
                     </div>
                 }
-                <h1 className="Item__Title">{post.get('title')}</h1>
+                {post.get('title') ? <h1 className="Item__Title">{post.get('title')}</h1> : null }
                 <p className="Item__Content">{post.get('description')}</p>
                 <a className="Item__Link" target="_blank" href={post.get('file')}>Descargar Archivo</a>
                 <img className="Item__Img" src={post.get('file')} alt="imagen" />
@@ -82,7 +81,7 @@ const validationPost = (post, index) => {
           </div>
         </div>
       );
-    }
+  }
 }
 
 const Post = props => {

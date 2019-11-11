@@ -1,80 +1,106 @@
-.Container__Item {
+.Post__Container {
   display: flex;
-  width: 600px;
-  height: auto;
-  flex-direction: column;
-  /* border: 1px solid yellowgreen; */
-  border: none;
-  padding: 10px;
-  box-sizing: border-box;
-  align-items: center;
-  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
-  border-radius: 15px;
-  margin: 10px 0;
-}
-
-.DeleteBTN__Container {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  margin-bottom: -44px;
-}
-
-.Delete__Btn {
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 2px;
-  box-sizing: border-box;
-}
-
-.Delete__Btn:hover, .Delete__Btn:active {
-  background-color: red;
-}
-
-.Item__Title {
-  text-align: center;
-}
-
-.Item__Content {
-  text-align: justify;
-}
-
-.Item__Link {
-  text-align: center;
-  color: rgb(82, 100, 100);
-  font-weight: bold;
-  margin: 10px;
-}
-
-.Item__Img {
-  max-width: 100%;
-  /* height: 50%; */
-  align-self: center;
-  background-size: cover;
-  display: none;
-}
-
-.Item__Details {
   width: 90%;
-  display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1125px) {
-  .Container__Item {
-    width: 100%;
+.Wrapper__Container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Document {
+  width: 100%;
+  height: 500px;
+}
+
+.Document_Wrapper {
+  padding-top: 64px;
+}
+
+.Details {
+  padding: 10px 20px;
+}
+
+.h4Center {
+  text-align: center;
+  margin: 2px;
+  text-transform: uppercase;
+}
+
+.Ciencia_img_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  padding: 5px;
+}
+.Ciencia_img_container a img {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.info_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid; */
+}
+
+.services__container {
+  margin: 0 40px;
+}
+
+.small {
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.info_services {
+  width: 1100px;
+  font-size: 1.2em;
+  text-align: justify;
+  padding: 0 20px;
+}
+h1 {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .Post__Container {
+    width: 95%;
   }
-  .Item__Img {
-    display: initial;
-    max-width: 95%;
-  }
-  .Item__Details {
-    font-size: .8em;
+  .Document {
+    height: 300px;
   }
 }body {
   margin: 0;
   font-family: sans-serif;
 
+}
+
+#message {
+  position: fixed;
+    top: -150px;
+    left: 0;
+    right: 0;
+    /* bottom: 0; */
+    z-index: 10;
+    background-color: coral;
+    text-align: center;
+    height:  44px;
+    padding: 0 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .8s;
+}
+
+#message.msgActive {
+  top: 8vh;
 }
 
 .header {
@@ -91,6 +117,7 @@
 .Logos {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .Content__QT {
@@ -210,8 +237,9 @@
     bottom: 0;
     position: fixed;
     background-color: #1e3240e0;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: scroll;
+    padding: 25px 0px;
   }
 
   .active  .Btn__chat {
@@ -239,10 +267,46 @@
   }
 }
 
-@media screen and (max-width: 352px) {
+@media screen and (max-width: 380px) {
   .BuapLogo {
     display: none;
   }
+}.Menu_container {
+  display: flex;
+  background-color: #219cca;
+  width: 100%;
+  justify-content: center;
+  height: 50px;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+  padding-top: 70px;
+}
+
+.SubMenu {
+  display: inherit;
+    /* width: 700px; */
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
+.SubMenu li {
+  align-items: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 50px;
+    color: white;
+    /* font-weight: bold; */
+    /* height: inherit; */
+}
+
+.SubMenu li:hover {
+  background-color: #00395E;
 }.Chat_Container {
   position: fixed;
   right: 0;
@@ -277,7 +341,7 @@
 
 .Container_Messages {
   display: flex;
-  /* width: 90%; */
+  width: 95%;
   height: 77%;
   overflow-y: scroll;
 
@@ -286,6 +350,7 @@
 .Container_Messages ul {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin: 0;
   padding: 0 10px;
   box-sizing: content-box;
@@ -450,59 +515,198 @@
 
 .before {
   z-index: -1;
-}.Post__Container {
+}.footer {
+  /* height: 250px; */
+  background-color: #00885b;
   display: flex;
-  width: 90%;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* flex-direction: column; */
+  color: white;
+  height: auto;
+  padding-bottom: 40px;
 }
 
-.Wrapper__Container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.Footer_container {
+  height:90px;
+  display:inherit;
+  align-items:center;
 }
 
-@media screen and (max-width: 700px) {
-  .Post__Container {
-    width: 95%;
-  }
-}.Menu_container {
-  display: flex;
-  background-color: #219cca;
-  width: 100%;
-  justify-content: center;
-  height: 50px;
-  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
-  padding-top: 70px;
-}
-
-.SubMenu {
+.form {
   display: inherit;
-    /* width: 700px; */
-    width: 100%;
-    padding: 0;
-    align-items: center;
-    height: 100%;
-    margin: 0;
+  flex-wrap: wrap;
+  width: 1100px;
+  justify-content: space-around;
+  padding-bottom: 10px;
 }
 
-.SubMenu li {
+.btn {
+  border-radius: 4px;
+  height: 40px;
+  cursor: pointer;
+  transition: .2s;
+  will-change: transform;
+}
+
+.item {
+  /* max-width: 300px; */
+}
+
+.logos {
+  display: inherit;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    /* border: 1px solid red; */
-    width: 100%;
-    height: 50px;
-    color: white;
-    /* font-weight: bold; */
-    /* height: inherit; */
+}
+.logos p {
+  font-size: 1.3em;
+}
+.information {
+  display: inherit;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: center; */
+}
+.information p {
+  margin-bottom: 30px;
+}
+.information p, label {
+  padding-left: 5px; 
+}
+.information input {
+  width: 85%;
+  font-size: 1.2em;
+  border-color: gray;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 10px 20px 5px 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 15px;
+}
+.email {
+  margin-left: -64px
+}
+.direction {
+  padding: 0 25px;
+  text-align: justify;
+}
+.description {
+  display: inherit;
+  flex-direction: column;
+}
+.btn.sbm {
+  color: white;
+  background: linear-gradient(to left, #fe344e, #ff7250);
 }
 
-.SubMenu li:hover {
-  background-color: #00395E;
+@media screen and (max-width: 600px) {
+  .form {
+    justify-content: center;
+    align-items: center;
+  }
+  .logos {
+    font-size: .8em;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:380px) {
+  .logos {
+    order: 3;
+  }
+  .information {
+    order: 1;
+  }
+  .description {
+    order: 2;
+  }
+  .teacher-img {
+    max-height: 120px;
+  }
+  .btn.second {
+    text-align: center;
+    font-size: .7em;
+    height: 20px;
+  }
+  .item {
+    max-width: 230px;
+  }
+}
+.Container__Item {
+  display: flex;
+  width: 600px;
+  height: auto;
+  flex-direction: column;
+  /* border: 1px solid yellowgreen; */
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.DeleteBTN__Container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: -44px;
+}
+
+.Delete__Btn {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.Delete__Btn:hover, .Delete__Btn:active {
+  background-color: red;
+}
+
+.Item__Title {
+  text-align: center;
+}
+
+.Item__Content {
+  text-align: justify;
+}
+
+.Item__Link {
+  text-align: center;
+  color: rgb(82, 100, 100);
+  font-weight: bold;
+  margin: 10px;
+}
+
+.Item__Img {
+  max-width: 100%;
+  /* height: 50%; */
+  align-self: center;
+  background-size: cover;
+  display: none;
+}
+
+.Item__Details {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1125px) {
+  .Container__Item {
+    width: 100%;
+  }
+  .Item__Img {
+    display: initial;
+    max-width: 95%;
+  }
+  .Item__Details {
+    font-size: .8em;
+  }
 }.Ayuda {
   height: 60px;
   width: 60px;

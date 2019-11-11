@@ -32,7 +32,7 @@
 
 .Container_Messages {
   display: flex;
-  /* width: 90%; */
+  width: 95%;
   height: 77%;
   overflow-y: scroll;
 
@@ -41,6 +41,7 @@
 .Container_Messages ul {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin: 0;
   padding: 0 10px;
   box-sizing: content-box;

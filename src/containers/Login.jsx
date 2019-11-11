@@ -14,16 +14,16 @@ class Login extends React.Component {
     this.db.settings({});
     this.header = [
       {
-        title: 'Programas',
-        link: '/servicio-social'
+        title: 'Inicio',
+        link: '/'
       },
       {
         title: 'Servicios',
-        link: '/practicas'
+        link: '/servicios'
       },
       {
-        title: 'Ciencia',
-        link: '/ciencia'
+        title: 'Programas',
+        link: '/programas'
       },  
     ]
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/footer.css';
-import logoBuap from '../images/logo_buap.png';
-import logoReact from '../images/react-logo.png'
+import logoBuap from '../assets/images/logo_buap.png';
+// import logoReact from '../images/react-logo.png'
 
 const Footer = props => {
   return (
@@ -14,17 +14,18 @@ const Footer = props => {
             <img src={logoBuap} alt="logobuap" width="170px" height="45px" />
           </div>
           
-            <img src={logoReact} alt="logoReact" width="16%" height="27%" />
-          <p className="direction">Facultad de Cs. de la Computación
-                14 Sur y Av. San Claudio C.P.
-                Puebla, Puebla, México
+            {/* <img src={logoReact} alt="logoReact" width="16%" height="27%" /> */}
+          <p className="direction">Laboratorio de Química Teórica
+          Facultad de Ciencias Químicas<br />
+          Benemérita Universidad Autónoma de Puebla<br />
+          Edificio FCQ 10 Ciudad Universitaria, Puebla, Puebla México 72570
           </p>
             
-          <p className="email">Email:<br /> profesorsfcc@buap.com.mx </p>
+          <p className="email">Email:<br /> profesorsfcq@buap.com.mx </p>
 
         </div>
               
-        <div className="item information">
+        {/* <div className="item information">
           <p>Boletin</p>
           <label htmlFor="name">Nombre</label>
           <input type="text" name="name" />
@@ -36,7 +37,7 @@ const Footer = props => {
           <p>Comentarios</p>
           <textarea name="comentarios" id="" cols="30" rows="10"></textarea>
           <button className="btn sbm" type="submit">Enviar</button>
-        </div>
+        </div> */}
 
       </form>
   </footer>

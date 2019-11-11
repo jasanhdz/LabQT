@@ -11,8 +11,68 @@
   justify-content: center;
 }
 
+.Document {
+  width: 100%;
+  height: 500px;
+}
+
+.Document_Wrapper {
+  padding-top: 64px;
+}
+
+.Details {
+  padding: 10px 20px;
+}
+
+.h4Center {
+  text-align: center;
+  margin: 2px;
+  text-transform: uppercase;
+}
+
+.Ciencia_img_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  padding: 5px;
+}
+.Ciencia_img_container a img {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.info_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid; */
+}
+
+.services__container {
+  margin: 0 40px;
+}
+
+.small {
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.info_services {
+  width: 1100px;
+  font-size: 1.2em;
+  text-align: justify;
+  padding: 0 20px;
+}
+h1 {
+  text-align: center;
+}
+
 @media screen and (max-width: 700px) {
   .Post__Container {
     width: 95%;
+  }
+  .Document {
+    height: 300px;
   }
 }
